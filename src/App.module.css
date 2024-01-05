@@ -3,3 +3,16 @@
     min-height: 100vh;
     background-color: #d8dbe2;
 }
+
+.Main {
+    padding-top: 81px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: #373f51;
+    text-decoration: none;
+}
