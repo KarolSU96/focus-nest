@@ -1,6 +1,6 @@
 .NavBar {
-    background-color: #58a4b0;
-    border: 1px solid #392f5a;
+    background-color: #a9bcd0;
+    border: 2px solid #392f5a;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -22,6 +22,6 @@
 }
 
 
-.test:hover {
-    color: red;
+.brand:hover {
+    color: #58a4b0;
 }

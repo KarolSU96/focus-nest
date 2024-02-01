@@ -2,6 +2,7 @@ import styles from "./App.module.css";
 import Navbar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Routes } from "react-router-dom";
+import './api/axiosDefaults';
 
 function Home() {
   return <h1>Home page</h1>;
