@@ -7,7 +7,7 @@ const SignUpForm = () => {
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
-        <Container className={styles.Container}>
+        <Container className="text-center">
           <h1 className="text-center">sign up</h1>
           <Form>
             <Form.Group className="mb-3" controlId="username">
@@ -21,16 +21,16 @@ const SignUpForm = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label>Confirm password</Form.Label>
-              <Form.Control type="password" placeholder="Password" name="password2"/>
+              <Form.Control type="password" placeholder="Confirm password" name="password2"/>
             </Form.Group>
             <Button className={styles.FormButton} variant="primary" type="submit">
               Submit
             </Button>
           </Form>
         </Container>
-        <Container>
+        <Container className="mt-4 text-center">
           <Link to="/signin">
-            Already have an account? <span>Sign in</span>
+            Already have an account? <span className={styles.SignInSpan} data-val="Sign in">Sign in</span>
           </Link>
         </Container>
       </Col>
