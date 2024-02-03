@@ -9,6 +9,7 @@
 .NavLink {
     text-decoration: none;
     padding: 5px;
+    margin: 0 10px 0 10px;
 }
 
 .Active i {
@@ -22,6 +23,48 @@
 }
 
 
-.brand:hover {
-    color: #58a4b0;
-}
+.brand {
+    padding: 0.5em 0.8em;
+    color: #373F51;
+    position: relative;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all 0.35s ease;
+  }
+  
+  .brand::before,
+  .brand::after {
+    content: '';
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    transition: all 0.35s ease;
+    opacity: 0;
+  }
+  
+  .brand::before {
+    right: 0;
+    top: 0;
+    border-top: 3px solid #58A4B0; 
+    border-right: 3px solid #DAA49A;
+    transform: translate(-100%, 50%);
+  }
+  
+  .brand::after {
+    left: 0;
+    bottom: 0;
+    border-bottom: 3px solid #DAA49A;
+    border-left: 3px solid #58A4B0; 
+    transform: translate(100%, -50%);
+  }
+  
+  .brand:hover::before,
+  .brand:hover::after {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  
+  .brand:hover {
+    color: #D8DBE2; /* Text color on hover */
+    background-color: #A9BCD0; /* Background color on hover */
+  }

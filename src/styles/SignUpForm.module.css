@@ -1,0 +1,21 @@
+.Row {
+    height: calc(100vh - 81px);
+  }
+
+.Image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.FormButton{
+background-color: #373f51;
+border: none;
+}
+
+.FormButton:hover {
+    border-radius: 20px;
+    background-color: #daa49a;
+    transition: all 0.3s ease 0s;
+}
+
