@@ -104,7 +104,7 @@ const SignUpForm = () => {
           </Link>
         </Container>
       </Col>
-      <Col className="my-auto" md={6}>
+      <Col className="my-auto d-none d-md-block" md={6}>
         <Image
           className={styles.Image}
           src={

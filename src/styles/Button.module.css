@@ -1,0 +1,10 @@
+.ConfirmButton {
+  background-color: #373f51;
+  border: none;
+}
+
+.ConfirmButton:hover {
+  border-radius: 20px;
+  background-color: #daa49a;
+  transition: all 0.3s ease 0s;
+}
