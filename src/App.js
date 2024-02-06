@@ -2,7 +2,7 @@ import styles from "./App.module.css";
 import Navbar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Routes } from "react-router-dom";
-import './api/axiosDefaults';
+import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 
@@ -16,9 +16,9 @@ function App() {
       <Navbar />
       <Container className={styles.Main}>
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/signin" element={<SignInForm/>} />
-          <Route path="/signup" element= {<SignUpForm/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignInForm />} />
+          <Route path="/signup" element={<SignUpForm />} />
         </Routes>
       </Container>
     </div>
