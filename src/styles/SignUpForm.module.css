@@ -1,61 +1,59 @@
 .Row {
-    height: calc(100vh - 81px);
-  }
-
-.Image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  height: calc(100vh - 81px);
 }
 
-.FormButton{
-background-color: #373f51;
-border: none;
+.Image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.FormButton {
+  background-color: #373f51;
+  border: none;
 }
 
 .FormButton:hover {
-    border-radius: 20px;
-    background-color: #daa49a;
-    transition: all 0.3s ease 0s;
+  border-radius: 20px;
+  background-color: #daa49a;
+  transition: all 0.3s ease 0s;
 }
-
 
 .SignInSpan {
-    position: relative; 
-    color: transparent;
-    line-height: 1;
+  position: relative;
+  color: transparent;
+  line-height: 1;
 }
-  
-  .SignInSpan:before,
-  .SignInSpan:after {
-    content: attr(data-val);
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 20%;
-    
-  }
-  
-  .SignInSpan:after {
-    left: 0%;
-    color: tomato; 
-    transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  }
-  
-  .SignInSpan:before {
-    opacity: 0;
-    left: -100%;
-    transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 1.955);
-  }
-  
-  .SignInSpan:hover:before {
-    left: 0%;
-    opacity: 1;
-    color: #373f51;
-  }
-  
-  .SignInSpan:hover:after {
-    left: 100%;
-    opacity: 0;
-  }
+
+.SignInSpan:before,
+.SignInSpan:after {
+  content: attr(data-val);
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 20%;
+}
+
+.SignInSpan:after {
+  left: 0%;
+  color: tomato;
+  transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.SignInSpan:before {
+  opacity: 0;
+  left: -100%;
+  transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 1.955);
+}
+
+.SignInSpan:hover:before {
+  left: 0%;
+  opacity: 1;
+  color: #373f51;
+}
+
+.SignInSpan:hover:after {
+  left: 100%;
+  opacity: 0;
+}

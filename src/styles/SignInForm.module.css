@@ -1,3 +1,42 @@
 .Row {
-    height: calc(100vh - 81px);
-  }
+  height: calc(100vh - 81px);
+}
+
+.SignUpSpan {
+  position: relative;
+  color: transparent;
+  line-height: 1;
+}
+
+.SignUpSpan:before,
+.SignUpSpan:after {
+  content: attr(data-val);
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 20%;
+}
+
+.SignUpSpan:after {
+  left: 0%;
+  color: tomato;
+  transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.SignUpSpan:before {
+  opacity: 0;
+  left: -100%;
+  transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 1.955);
+}
+
+.SignUpSpan:hover:before {
+  left: 0%;
+  opacity: 1;
+  color: #373f51;
+}
+
+.SignUpSpan:hover:after {
+  left: 100%;
+  opacity: 0;
+}

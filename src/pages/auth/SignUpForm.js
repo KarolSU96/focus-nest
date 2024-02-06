@@ -40,7 +40,7 @@ const SignUpForm = () => {
         <Container className="text-center">
           <h1 className="text-center">sign up</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="username">
+            <Form.Group className="mb-3" controlId="Username">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
