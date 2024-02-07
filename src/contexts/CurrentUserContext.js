@@ -27,6 +27,7 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
+    // always refresh access token before making a request
     axiosReq. interceptors.request.use(
       async (config) => {
         try {
@@ -46,7 +47,7 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err)
       }
     )
-
+    // refresh access_token if it gets a 401 error 
     axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
