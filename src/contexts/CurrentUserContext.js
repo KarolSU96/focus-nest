@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { axiosRes } from "../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { useNavigate } from "react-router-dom";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -26,7 +27,27 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
-    axsiosRes.interceptors.response.use(
+    axiosReq. interceptors.request.use(
+      async (config) => {
+        try {
+          await post('dj-rest-auth/token/refresh/')
+        } catch(err) {
+          setCurrentUser((prevCurrentUser) => {
+            if (prevCurrentUser) {
+              navigate('/signin')
+            }
+            return null
+          })
+          return config
+        }
+        return config
+      },
+      (err) => {
+        return Promise.reject(err)
+      }
+    )
+
+    axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
         if (err.response?.status === 401) {
@@ -45,7 +66,7 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
-  });
+  }, [navigate]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
