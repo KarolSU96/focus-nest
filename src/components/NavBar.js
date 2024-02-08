@@ -1,14 +1,15 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import React from "react";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
+import avatarStyles from "../styles/Avatar.module.css";
 
 // function applies active class name while the the navlink is active
-const classNameFunc = ({ isActive }) => `${styles.NavLinksNotAvatar} ${isActive ? styles.Active : ''}`;
+const classNameFuncLink = ({ isActive }) => `${styles.NavLinksNotAvatar} ${isActive ? styles.Active : ''}`;
 
 
 const NavBar = () => {
@@ -16,7 +17,7 @@ const NavBar = () => {
   console.log("currentUser:", currentUser);
 
   const addTaskIcon = (
-    <NavLink className={styles.NavLinksNotAvatar} to="/tasks/create">
+    <NavLink className={classNameFuncLink} to="/tasks/create">
       <i className="fa-solid fa-plus"></i>Add Task
     </NavLink>
   );
@@ -24,46 +25,42 @@ const NavBar = () => {
   const loggedInIcons = (
     <>
       <NavLink
-        className={classNameFunc}
+        className={classNameFuncLink}
         to="/collections"
       >
         <i className="fa-solid fa-box"></i>Collections
       </NavLink>
       <NavLink
-          className={styles.NavLinksNotAvatar}
-          activeClassName={styles.Active}
+          className={classNameFuncLink}
           to="/contact"
         >
           <i className="fa-solid fa-envelope"></i>Contact Us
         </NavLink>
       <NavLink
-        className={styles.NavLinksNotAvatar}
-        activeClassName={styles.Active}
+        className={classNameFuncLink}
         to="/signout"
       >
         <i className="fa-solid fa-door-open" to="/"onClick={()=>{}}></i>Sign Out
       </NavLink>
       <NavLink
-        className={styles.NavLinkWithAvatar}
-        activeClassName={styles.Active}
+        className={classNameFuncAvatar}
+
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={30}/>
+        <Avatar className={avatarStyles.AvatarActive} src={currentUser?.profile_image} text="Profile" height={30}/>
       </NavLink>
     </>
   );
   const loggedOutIcons = (
     <>
       <NavLink
-        className={styles.NavLinksNotAvatar}
-        activeClassName={styles.Active}
+        className={classNameFuncLink}
         to="/signin"
       >
         <i className="fa-solid fa-door-open"></i>Sign In
       </NavLink>
       <NavLink
-        className={styles.NavLinksNotAvatar}
-        activeClassName={styles.Active}
+        className={classNameFuncLink}
         to="/signup"
       >
         <i className="fa-solid fa-user-plus"></i>Sign Up
@@ -84,8 +81,7 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <NavLink
-              className={styles.NavLinksNotAvatar}
-              activeClassName={styles.Active}
+              className={styles.NavLinkWithAvatar}
               to="/"
             >
               <i className="fa-solid fa-house"></i>Home

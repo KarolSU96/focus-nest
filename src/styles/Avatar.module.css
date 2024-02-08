@@ -4,3 +4,6 @@
     object-fit: cover;
 }
 
+.AvatarActive{
+    border: 2px solid #283593;
+  }

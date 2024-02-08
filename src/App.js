@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
+          <Route render={()=> <p>Page not found!</p>}/>
         </Routes>
       </Container>
     </div>

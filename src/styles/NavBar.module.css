@@ -27,6 +27,10 @@
   color: #283593 ;
 }
 
+.AvatarActive i {
+  color: #283593 
+}
+
 .brand {
     padding: 0.5em 0.8em;
     color: #373F51;
