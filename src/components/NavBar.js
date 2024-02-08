@@ -1,11 +1,15 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
+import styles from "../styles/NavBar.module.css";
 import React from "react";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
+
+// function applies active class name while the the navlink is active
+const classNameFunc = ({ isActive }) => `${styles.NavLinksNotAvatar} ${isActive ? styles.Active : ''}`;
+
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -20,8 +24,7 @@ const NavBar = () => {
   const loggedInIcons = (
     <>
       <NavLink
-        className={styles.NavLinksNotAvatar}
-        activeClassName={styles.Active}
+        className={classNameFunc}
         to="/collections"
       >
         <i className="fa-solid fa-box"></i>Collections

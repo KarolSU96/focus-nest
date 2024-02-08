@@ -12,10 +12,6 @@
     margin: 0 10px 0 10px;
 }
 
-.Active i {
-    color: #daa49a;
-}
-
 .NavLinksNotAvatar:hover {
     background-color: #d8dbe2;
     transition: background-color 0.3s ease;
@@ -26,6 +22,9 @@
   background-color: #d8dbe2;
     transition: background-color 0.3s ease;
     border-radius: 8px;
+}
+.Active i {
+  color: #283593 ;
 }
 
 .brand {
