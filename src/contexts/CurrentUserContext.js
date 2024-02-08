@@ -28,10 +28,10 @@ export const CurrentUserProvider = ({ children }) => {
 
   useMemo(() => {
     // always refresh access token before making a request
-    axiosReq. interceptors.request.use(
+    axiosReq.interceptors.request.use(
       async (config) => {
         try {
-          await post('dj-rest-auth/token/refresh/')
+          await axios.post('dj-rest-auth/token/refresh/')
         } catch(err) {
           setCurrentUser((prevCurrentUser) => {
             if (prevCurrentUser) {

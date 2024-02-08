@@ -6,7 +6,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.NavLink {
+.NavLinksNotAvatar {
     text-decoration: none;
     padding: 5px;
     margin: 0 10px 0 10px;
@@ -16,12 +16,17 @@
     color: #daa49a;
 }
 
-.NavLink:hover {
+.NavLinksNotAvatar:hover {
     background-color: #d8dbe2;
     transition: background-color 0.3s ease;
     border-radius: 8px;
 }
 
+.NavLinkWithAvatar:hover {
+  background-color: #d8dbe2;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+}
 
 .brand {
     padding: 0.5em 0.8em;
