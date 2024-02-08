@@ -1,12 +1,12 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import React from "react";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-import avatarStyles from "../styles/Avatar.module.css";
+import axios from "axios";
 
 // function applies active class name while the the navlink is active
 const classNameFuncLink = ({ isActive }) => `${styles.NavLinksNotAvatar} ${isActive ? styles.Active : ''}`;
@@ -14,7 +14,17 @@ const classNameFuncLink = ({ isActive }) => `${styles.NavLinksNotAvatar} ${isAct
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  console.log("currentUser:", currentUser);
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try{
+      await axios.post('dj-rest-auth/logout/')
+      setCurrentUser(null)
+    } catch(err) {
+      console.log(err)
+    }
+  };
+
 
   const addTaskIcon = (
     <NavLink className={classNameFuncLink} to="/tasks/create">
@@ -39,15 +49,15 @@ const NavBar = () => {
       <NavLink
         className={classNameFuncLink}
         to="/signout"
+        onClick={handleSignOut}
       >
         <i className="fa-solid fa-door-open" to="/"onClick={()=>{}}></i>Sign Out
       </NavLink>
       <NavLink
-        className={classNameFuncAvatar}
-
+        className={styles.NavLinkWithAvatar}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar className={avatarStyles.AvatarActive} src={currentUser?.profile_image} text="Profile" height={30}/>
+        <Avatar src={currentUser?.profile_image} text="Profile" height={30}/>
       </NavLink>
     </>
   );
