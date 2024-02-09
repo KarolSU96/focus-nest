@@ -4,24 +4,30 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import React from "react";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 // function applies active class name while the the navlink is active
-const classNameFuncLink = ({ isActive }) => `${styles.NavLinksNotAvatar} ${isActive ? styles.Active : ''}`;
-
+const classNameFuncLink = ({ isActive }) =>
+  `${styles.NavLinksNotAvatar} ${isActive ? styles.Active : ""}`;
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
+  const {expanded, setExpanded, ref} = useClickOutsideToggle();
+
   const handleSignOut = async () => {
-    try{
-      await axios.post('dj-rest-auth/logout/')
-      setCurrentUser(null)
-    } catch(err) {
-      console.log(err)
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -34,52 +40,46 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
-      <NavLink
-        className={classNameFuncLink}
-        to="/collections"
-      >
+      <NavLink className={classNameFuncLink} to="/collections">
         <i className="fa-solid fa-box"></i>Collections
       </NavLink>
-      <NavLink
-          className={classNameFuncLink}
-          to="/contact"
-        >
-          <i className="fa-solid fa-envelope"></i>Contact Us
-        </NavLink>
+      <NavLink className={classNameFuncLink} to="/contact">
+        <i className="fa-solid fa-envelope"></i>Contact Us
+      </NavLink>
       <NavLink
         className={classNameFuncLink}
         to="/signout"
         onClick={handleSignOut}
       >
-        <i className="fa-solid fa-door-open" to="/"onClick={()=>{}}></i>Sign Out
+        <i className="fa-solid fa-door-open" to="/" onClick={() => {}}></i>Sign
+        Out
       </NavLink>
       <NavLink
         className={styles.NavLinkWithAvatar}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={30}/>
+        <Avatar src={currentUser?.profile_image} text="Profile" height={30} />
       </NavLink>
     </>
   );
   const loggedOutIcons = (
     <>
-      <NavLink
-        className={classNameFuncLink}
-        to="/signin"
-      >
+      <NavLink className={classNameFuncLink} to="/signin">
         <i className="fa-solid fa-door-open"></i>Sign In
       </NavLink>
-      <NavLink
-        className={classNameFuncLink}
-        to="/signup"
-      >
+      <NavLink className={classNameFuncLink} to="/signup">
         <i className="fa-solid fa-user-plus"></i>Sign Up
       </NavLink>
     </>
   );
 
   return (
-    <Navbar expand="md" className={styles.NavBar} fixed="top">
+    <Navbar
+      expanded={expanded}
+      expand="md"
+      className={styles.NavBar}
+      fixed="top"
+    >
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
@@ -87,13 +87,14 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
         {currentUser && addTaskIcon}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavLink
-              className={styles.NavLinkWithAvatar}
-              to="/"
-            >
+            <NavLink className={styles.NavLinkWithAvatar} to="/">
               <i className="fa-solid fa-house"></i>Home
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
