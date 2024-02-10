@@ -93,7 +93,7 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavLink className={styles.NavLinkWithAvatar} to="/">
+            <NavLink className={classNameFuncLink} to="/">
               <i className="fa-solid fa-house"></i>Home
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}

@@ -12,9 +12,10 @@ function TaskCreateForm() {
       notes: "",
       taskCollections:"",
     })
+
   return (
     
-      <Form className="p-4 rounded mt-5 w-75 mx-auto">
+      <Form className={`${styles.TaskForm} p-4 rounded mt-5 w-75 mx-auto`}>
         <Container className="text-center" >
           <h2>Add a Task</h2>
           <Row className="justify-content-center">
