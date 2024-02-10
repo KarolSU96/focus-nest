@@ -8,3 +8,15 @@
   background-color: #daa49a;
   transition: all 0.3s ease 0s;
 }
+
+
+.CancelButton {
+  background-color: #58a4b0;
+  border: none;
+}
+
+.CancelButton:hover {
+  border-radius: 20px;
+  background-color: #daa49a;
+  transition: all 0.3s ease 0s;
+}

@@ -18,7 +18,7 @@ function App() {
           <Route path="/" render={() => <h1>Home page</h1>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
-          <Route path="tasks/create" element={TaskCreateForm}/>
+          <Route path="tasks/create" element={<TaskCreateForm/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>

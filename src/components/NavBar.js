@@ -31,7 +31,6 @@ const NavBar = () => {
     }
   };
 
-
   const addTaskIcon = (
     <NavLink className={classNameFuncLink} to="/tasks/create">
       <i className="fa-solid fa-plus"></i>Add Task
