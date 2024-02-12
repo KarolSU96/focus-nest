@@ -54,10 +54,10 @@ export const CurrentUserProvider = ({ children }) => {
         if (err.response?.status === 401) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-          } catch {
+          } catch(err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                navigate("/singin");
+                navigate("/signin");
               }
               return null;
             });

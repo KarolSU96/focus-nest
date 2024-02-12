@@ -1,25 +1,45 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap'
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/TaskCreateForm.module.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function TaskCreateForm() {
+  const currentUser = useContext(CurrentUserContext)
+  const userTest = <>{currentUser?.username}</>
+
+
     const [taskData, setTaskData] = useState({
       taskName: "",
       taskPriority: "",
       taskDueDate: "",
       isDone: false,
       taskNotes: "",
-      taskCollections:"",
+      taskCollection:"",
     });
 
-    const {taskName, taskPriority, taskDueDate, isDone, taskNotes} = taskData;
+    const {taskName, taskPriority, taskDueDate, isDone, taskNotes, taskCollection} = taskData;
+    const [collections, setCollections] = useState({results:[]});
+    const [selectedCollection, setSelectedCollection] = useState('');
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
+    useEffect(() => {
+
+      const fetchCollections = async () => {
+        try {
+          const response = await axios.get('/task_collections/');
+          setCollections(response.data);
+          console.log('Collections response:', response.data);
+        } catch (error) {
+          console.error('Error fetching collections:', error);
+        }
+      }
+      fetchCollections();
+    },[] )
 
 
     const handleChange = (event) => {
@@ -29,33 +49,35 @@ function TaskCreateForm() {
       });
     };
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      const formData = new FormData();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
 
-      formData.append("taskName", taskName);
-      formData.append("taskPriority", taskPriority);
-      formData.append("taskDueDate", taskDueDate);
-      formData.append("isDone", isDone);
-      formData.append("taskNotes", taskNotes);
-      formData.append("taskCollections", taskCollections);
+    formData.append("taskName", taskName);
+    formData.append("taskPriority", taskPriority);
+    formData.append("taskDueDate", taskDueDate);
+    formData.append("isDone", isDone);
+    formData.append("taskNotes", taskNotes);
+    formData.append("taskCollection", taskCollection);
 
-      try {
-        const {data} = await axios.post("/tasks/", formData);
-        history.pushState(`/tasks/${data.id}`);
-      } catch (err){
-        console.log(err);
-        if (err.response?.status !==401) {
-          setErrors(err.response?.data);
-        }
+    try {
+      const {data} = await axios.post("/tasks/", formData);
+      navigate(`/tasks/${data.id}`);
+    } catch (err){
+      console.log(err);
+      console.log(err.response)
+      if (err.response?.status !==401) {
+        setErrors(err.response?.data);
       }
-    };
+    }
+  };
 
   return (
     
-      <Form className={`${styles.TaskForm} p-4 mt-5 w-75 mx-auto`}>
+      <Form onSubmit={handleSubmit} className={`${styles.TaskForm} p-4 mt-5 w-75 mx-auto`}>
         <Container className="text-center" >
           <h2>Add a Task</h2>
+          {currentUser ? userTest : ""}
           <Row className="justify-content-center">
             <Col >
         <Form.Group className="mb-3" controlId="taskName">
@@ -84,7 +106,7 @@ function TaskCreateForm() {
             <option>High</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group className="mb-3"controlId="taskDueDate">
+        <Form.Group className="mb-3" controlId="taskDueDate">
           <Form.Label>Due Date</Form.Label>
           <Form.Control
           className="text-center"
@@ -94,14 +116,23 @@ function TaskCreateForm() {
           onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="taskCollection">
           <Form.Label>Collection</Form.Label>
           <Form.Control
           className="text-center"
-          type="text"
-          placeholder="Enter task collection"
+          as="select"
+          name="taskCollection"
+          value={taskCollection}
           onChange={handleChange}
-          />
+          >
+            <option value="" disabled> Select a collection</option>
+            {collections.results.length === 0 && (<option value ="" disabled>No collections available</option>)}
+            {collections.results.map((collection) => (
+              <option key = {collection.id} value={collection.id}>
+                {collection.title}
+              </option>
+            ))}
+          </Form.Control>
         </Form.Group>
 
         <Form.Group className="mb-3"controlId="taskNotes">
