@@ -12,15 +12,15 @@ function TaskCreateForm() {
 
 
     const [taskData, setTaskData] = useState({
-      taskName: "",
-      taskPriority: "",
-      taskDueDate: "",
-      isDone: false,
-      taskNotes: "",
-      taskCollection:"",
+      task_name: "",
+      priority: "low",
+      task_due_date: "",
+      task_notes: "",
+      task_collection:"",
     });
 
-    const {taskName, taskPriority, taskDueDate, isDone, taskNotes, taskCollection} = taskData;
+    const {task_name, priority, task_due_date, task_notes, task_collection} = taskData;
+
     const [collections, setCollections] = useState({results:[]});
     const [selectedCollection, setSelectedCollection] = useState('');
 
@@ -53,12 +53,11 @@ function TaskCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("taskName", taskName);
-    formData.append("taskPriority", taskPriority);
-    formData.append("taskDueDate", taskDueDate);
-    formData.append("isDone", isDone);
-    formData.append("taskNotes", taskNotes);
-    formData.append("taskCollection", taskCollection);
+    formData.append("task_name", task_name);
+    formData.append("priority", priority);
+    formData.append("task_due_date", task_due_date);
+    formData.append("task_notes", task_notes);
+    formData.append("task_collection", task_collection);
 
     try {
       const {data} = await axios.post("/tasks/", formData);
@@ -85,8 +84,8 @@ function TaskCreateForm() {
           <FormControl className="text-center"
           type="text"
           placeholder="Enter task name"
-          name="taskName"
-          value={taskName}
+          name="task_name"
+          value={task_name}
           required
           onChange={handleChange}
           />
@@ -96,14 +95,14 @@ function TaskCreateForm() {
           <Form.Control
           className="text-center"
           as="select"
-          name="taskPriority"
-          value={taskPriority}
+          name="priority"
+          value={priority}
           required
           onChange={handleChange}
           >
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
           </Form.Control>
         </Form.Group>
         <Form.Group className="mb-3" controlId="taskDueDate">
@@ -111,8 +110,8 @@ function TaskCreateForm() {
           <Form.Control
           className="text-center"
           type="date"
-          name="taskDueDate"
-          value={taskDueDate}
+          name="task_due_date"
+          value={task_due_date}
           onChange={handleChange}
           />
         </Form.Group>
@@ -121,8 +120,8 @@ function TaskCreateForm() {
           <Form.Control
           className="text-center"
           as="select"
-          name="taskCollection"
-          value={taskCollection}
+          name="task_collection"
+          value={task_collection}
           onChange={handleChange}
           >
             <option value="" disabled> Select a collection</option>
@@ -142,8 +141,8 @@ function TaskCreateForm() {
           as="textarea"
           rows={4}
           placeholder="Enter additional notes"
-          name="taskNotes"
-          value={taskNotes}
+          name="task_notes"
+          value={task_notes}
           onChange={handleChange}
           />
         </Form.Group>
