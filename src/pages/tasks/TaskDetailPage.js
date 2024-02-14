@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 import { axiosReq } from '../../api/axiosDefaults';
+import Task from './Task';
 
 function TaskDetailPage() {
     const{id} = useParams();
@@ -26,7 +27,7 @@ function TaskDetailPage() {
   return (
     <Row>
         <Col>
-        <p>Task component</p>
+        <Task {...task.results[0]} setTask={setTask} taskDetailPage />
         </Col>
     </Row>
   )
