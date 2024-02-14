@@ -8,6 +8,7 @@ import SignInForm from "./pages/auth/SignInForm";
 import NotFound from "./components/PageNotFound";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import HomeTasksPage from "./pages/tasks/HomeTasksPage";
+import TaskDetailPage from "./pages/tasks/TaskDetailPage";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
-          <Route path="tasks/:id" element={()=>} />
+          <Route path="tasks/:id" element={<TaskDetailPage/>} />
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>
