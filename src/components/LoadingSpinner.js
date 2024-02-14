@@ -4,7 +4,7 @@ import styles from "../styles/Spinner.module.css";
 
 function LoadingSpinner() {
   return (
-    <div className={styles.CustomSpinnerColor}><Spinner animation="border"></Spinner></div>
+    <div className={`${styles.CustomSpinnerColor} d-flex justify-content-center`}><Spinner animation="border"></Spinner></div>
   )
 }
 

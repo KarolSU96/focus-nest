@@ -14,7 +14,7 @@ function HomeTasksPage() {
 
   
   return (
-    <>
+    <><Container>
       { currentUser ? (
       <Row>
           <Col>
@@ -24,6 +24,7 @@ function HomeTasksPage() {
           </Col>
       </Row>
       ): loggedOutContent}
+      </Container>
     </>
   )
 }

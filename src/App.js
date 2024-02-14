@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import NotFound from "./components/PageNotFound";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
+import HomeTasksPage from "./pages/tasks/HomeTasksPage";
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
       <Navbar />
       <Container className={styles.Main}>
         <Routes>
-          <Route path="/" render={() => <h1>Home page</h1>} />
+          <Route path="/" element={<HomeTasksPage/>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
