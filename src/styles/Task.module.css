@@ -1,0 +1,9 @@
+.TaskSpan {
+  margin: 0.5rem 2rem 0;
+}
+
+.TaskCard {
+  background-color: #a9bcd0;
+  border-radius: 8px;
+  border: 2px solid #392f5a;
+}

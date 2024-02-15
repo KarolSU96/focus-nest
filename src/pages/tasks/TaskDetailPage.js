@@ -25,7 +25,7 @@ function TaskDetailPage() {
 
 
   return (
-    <Row>
+    <Row className="mt-5">
         <Col>
         <Task {...task.results[0]} setTask={setTask} taskDetailPage />
         </Col>
