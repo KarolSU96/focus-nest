@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, CardBody, CardTitle } from "react-bootstrap";
 import styles from "../../styles/Task.module.css";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Task = (props) => {
+  // Destructure props
   const {
     id,
     owner,
@@ -16,11 +18,61 @@ const Task = (props) => {
     taskDetailPage,
   } = props;
 
+   // Get current user from context
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
+  // Update task state when props change
+  useEffect(() => {
+    setTask((prevTask)=>({
+      ...prevTask,
+      id,
+      owner,
+      created_at,
+      task_name,
+      priority,
+      is_done,
+      due_date,
+      notes,
+    }));
+  }, [id, owner, created_at, task_name, priority, is_done, due_date, notes]);
+
+  // Initialize task state with default values
+  const [task, setTask] = useState({
+    id,
+    owner,
+    created_at,
+    task_name,
+    priority,
+    is_done,
+    due_date,
+    notes,
+  });
+
+  // Handle marking task as done
+  const handleDone = async () => {
+    try {
+      console.log("Before PUT Request - task_name:", task.task_name, "priority:", task.priority);
+      
+      // Make a PUT request to update the task status
+      const { data } = await axiosRes.put(`tasks/${id}`, {
+        is_done: !task.is_done,
+        task_name: task.task_name,
+        priority: task.priority,
+      });
+      console.log
+      // Update the local state with the updated task data
+      setTask((prevTask) => ({
+        ...prevTask,
+        is_done: !prevTask.is_done,
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <Card className={styles.TaskCard}>
+    <Card className={`${styles.TaskCard} col-10 mx-auto`}>
       <CardBody>
         <CardTitle className="d-flex justify-content-between">
           <span>{task_name}</span>
@@ -36,7 +88,16 @@ const Task = (props) => {
         <div className="d-flex justify-content-center text-center">
           <span className={styles.TaskSpan}>Created at: {created_at}</span>
           <span className={styles.TaskSpan}>
-            Status: {is_done ? "Done ✔️" : "Pending ⌛"}
+            Mark as Done:{" "}
+            {is_owner && (
+              <label className={styles.TaskCheckboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={task.is_done}
+                  onChange={handleDone}
+                />
+              </label>
+            )}
           </span>
           <span className={styles.TaskSpan}>Due Date: {due_date}</span>
         </div>
