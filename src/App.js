@@ -9,15 +9,21 @@ import NotFound from "./components/PageNotFound";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import HomeTasksPage from "./pages/tasks/HomeTasksPage";
 import TaskDetailPage from "./pages/tasks/TaskDetailPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
 function App() {
+
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
+
+
   return (
     <div className={styles.App}>
       <Navbar />
       <Container className={styles.Main}>
         <Routes>
-          <Route path="/" element={<HomeTasksPage/>} />
+          <Route path="/" element={<HomeTasksPage message="NNo matches found. Please refine your search terms."/>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="tasks/create" element={<TaskCreateForm/>}/>

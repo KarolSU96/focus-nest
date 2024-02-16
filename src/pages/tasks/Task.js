@@ -76,7 +76,7 @@ const Task = (props) => {
   };
 
   return (
-    <Card className={`${styles.TaskCard} col-10 mx-auto`}>
+    <Card className={`${styles.TaskCard}`}>
       <CardBody>
         <CardTitle className="d-flex justify-content-between">
           <span>{task_name}</span>
