@@ -18,13 +18,13 @@ const Task = (props) => {
     taskDetailPage,
   } = props;
 
-   // Get current user from context
+  // Get current user from context
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
   // Update task state when props change
   useEffect(() => {
-    setTask((prevTask)=>({
+    setTask((prevTask) => ({
       ...prevTask,
       id,
       owner,
@@ -52,15 +52,19 @@ const Task = (props) => {
   // Handle marking task as done
   const handleDone = async () => {
     try {
-      console.log("Before PUT Request - task_name:", task.task_name, "priority:", task.priority);
-      
+      console.log(
+        "Before PUT Request - task_name:",
+        task.task_name,
+        "priority:",
+        task.priority
+      );
+
       // Make a PUT request to update the task status
       const { data } = await axiosRes.put(`tasks/${id}`, {
         is_done: !task.is_done,
         task_name: task.task_name,
         priority: task.priority,
       });
-      console.log
       // Update the local state with the updated task data
       setTask((prevTask) => ({
         ...prevTask,
@@ -78,7 +82,8 @@ const Task = (props) => {
           <span>{task_name}</span>
           <div className="d-flex align-items-center">
             <span>
-              Priority: {priority === "low" ? "🔵 Low" : ""}
+              Priority:
+              {priority === "low" ? "🔵 Low" : ""}
               {priority === "medium" ? "🟡 Medium" : ""}
               {priority === "high" ? "🔴 High" : ""}
             </span>
