@@ -40,9 +40,7 @@ function HomeTasksPage({ message = "" }) {
     <>
       {currentUser ? (
         <Row>
-          <Col className="col-md-8 col-lg-8 mt-5">
-            <p>Search Tasks:</p>
-            <i className={`fas fa-search`} />
+          <Col className="col-md-8 col-lg-8 mt-3">
             <Form
               className=""
               onSubmit={(event) => event.preventDefault()}
