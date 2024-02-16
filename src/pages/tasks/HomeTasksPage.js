@@ -39,7 +39,7 @@ function HomeTasksPage({message = ""}) {
     <>
       { currentUser ? (
       <Row >
-          <Col className="col-lg-8 mt-5">
+          <Col className="col-md-8 col-lg-8 mt-5">
           {hasLoaded ? (
           < >
           {tasks.results.length ? 
@@ -56,7 +56,7 @@ function HomeTasksPage({message = ""}) {
             <Container><LoadingSpinner/></Container>
           )}
           </Col>
-          <Col className="d-none d-lg-block p-lg-2">
+          <Col className="d-none d-sm-block p-lg-2">
           <p>Filters here</p>
           </Col>
       </Row>

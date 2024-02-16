@@ -75,11 +75,11 @@ const NavBar = () => {
   return (
     <Navbar
       expanded={expanded}
-      expand="md"
+      expand="lg"
       className={styles.NavBar}
       fixed="top"
     >
-      <Container>
+      <Container className="">
         <NavLink to="/">
           <Navbar.Brand>
             <span className={styles.brand}>FocusNest</span>
