@@ -44,7 +44,7 @@ function HomeTasksPage({ message = "" }) {
   return (
     <>
       {currentUser ? (
-        <Row>
+        <Row className="justify-content-center">
           <Col className="col-md-8 col-lg-8 mt-3">
             <Form
               className=""
@@ -73,7 +73,7 @@ function HomeTasksPage({ message = "" }) {
               </Container>
             )}
           </Col>
-          <Col className="d-none d-sm-block p-lg-2">
+          <Col className="d-none d-sm-block p-lg-2 col-2">
             <p>Filters here</p>
           </Col>
         </Row>
