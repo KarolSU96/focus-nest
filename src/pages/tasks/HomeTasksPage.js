@@ -25,7 +25,12 @@ function HomeTasksPage({ message = "" }) {
       }
     };
     setHasLoaded(false);
-    fetchTasks();
+    const timer = setTimeout(()=> {
+      fetchTasks();
+    }, 1000)
+    return () => {
+      clearTimeout();
+    }
   }, [pathname, query]);
 
   const currentUser = useCurrentUser();
@@ -63,8 +68,8 @@ function HomeTasksPage({ message = "" }) {
                 )}
               </>
             ) : (
-              <Container>
-                <LoadingSpinner />
+              <Container className="mt-5">
+                <LoadingSpinner  />
               </Container>
             )}
           </Col>

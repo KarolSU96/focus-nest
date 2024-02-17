@@ -23,7 +23,7 @@ function App() {
       <Navbar />
       <Container className={styles.Main}>
         <Routes>
-          <Route path="/" element={<HomeTasksPage message="NNo matches found. Please refine your search terms."/>} />
+          <Route path="/" element={<HomeTasksPage message="No matches found. Please refine your search terms."/>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
