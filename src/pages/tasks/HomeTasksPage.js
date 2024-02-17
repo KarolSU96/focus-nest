@@ -59,8 +59,8 @@ function HomeTasksPage({ message = "" }) {
               <>
                 {tasks.results.length ? (
                   tasks.results.map((task) => (
-                    <div className="my-2">
-                      <Task key={task.id} {...task} setTasks={setTasks} />
+                    <div key={task.id} className="my-2">
+                      <Task {...task} setTasks={setTasks} />
                     </div>
                   ))
                 ) : (
