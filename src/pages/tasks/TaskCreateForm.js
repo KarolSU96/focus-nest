@@ -22,7 +22,6 @@ function TaskCreateForm() {
     const {task_name, priority, due_date, notes, task_collection} = taskData;
 
     const [collections, setCollections] = useState({results:[]});
-    const [selectedCollection, setSelectedCollection] = useState('');
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
@@ -96,7 +95,7 @@ function TaskCreateForm() {
           className="text-center"
           as="select"
           name="priority"
-          value={priority}
+          value={priority || "low"}
           required
           onChange={handleChange}
           >

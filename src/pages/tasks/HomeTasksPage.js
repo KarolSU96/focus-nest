@@ -18,8 +18,8 @@ function HomeTasksPage({ message = "" }) {
     const fetchTasks = async () => {
       try {
         const { data } = await axiosReq.get(`/tasks/?search=${query}`);
-        const incompleteTasks = data.results.filter(task => !task.is_done);
-        setTasks({ results: incompleteTasks });
+        const incompleteTasks = data.results.filter((task) => !task.is_done);
+        setTasks(data);
         setHasLoaded(true);
         console.log(data);
       } catch (err) {
@@ -31,7 +31,7 @@ function HomeTasksPage({ message = "" }) {
       fetchTasks();
     }, 1000)
     return () => {
-      clearTimeout();
+      clearTimeout(timer);
     }
   }, [pathname, query]);
 
@@ -61,19 +61,19 @@ function HomeTasksPage({ message = "" }) {
               <>
                 {tasks.results.length ? (
                   <InfiniteScroll
-                    children={
-                      tasks.results.map((task) => (
-                        <div key={task.id} className="my-2">
-                          <Task {...task} setTasks={setTasks} />
-                        </div>
-                      ))
-                    }
-                    dataLength={tasks.results.length}
-                    loader={<LoadingSpinner/>}
-                    hasMore={!!task.next}
-                    next={()=> fetchMoreData(tasks, setTasks)}
-                  />
-                  
+                  children={tasks.results
+                    .filter((task) => !task.is_done)  // Filter tasks where is_done is false
+                    .map((task) => (
+                      <div key={task.id} className="my-2">
+                        <Task {...task} setTasks={setTasks} />
+                      </div>
+                    ))}
+                  dataLength={tasks.results.length}
+                  loader={<LoadingSpinner />}
+                  hasMore={!!tasks.next}
+                  next={() => fetchMoreData(tasks, setTasks)}
+                />
+
                 ) : (
                   <Container>message={message}</Container>
                 )}
