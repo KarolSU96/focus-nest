@@ -110,7 +110,7 @@ const Task = (props) => {
         <div className="d-flex justify-content-center">
           <h5 className="mb-auto">Notes:</h5>
         </div>
-        <div className="d-flex justify-content-center pt-0">{notes}</div>
+        <div className={`${styles.NotesContainer}d-flex justify-content-center pt-0`}>{notes}</div>
       </CardBody>
     </Card>
   );

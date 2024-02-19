@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Task from "./Task";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function HomeTasksPage({ message = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
@@ -70,7 +71,7 @@ function HomeTasksPage({ message = "" }) {
                     dataLength={tasks.results.length}
                     loader={<LoadingSpinner/>}
                     hasMore={!!task.next}
-                    next={()=> {}}
+                    next={()=> fetchMoreData(tasks, setTasks)}
                   ></InfiniteScroll>
                   
                 ) : (
