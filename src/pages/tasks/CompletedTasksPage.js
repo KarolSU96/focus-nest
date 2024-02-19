@@ -4,6 +4,8 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Task from "./Task";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function CompletedTasksPage({ message = "" }) {
   const [completedTasks, setCompletedTasks] = useState({ results: [] });
@@ -49,11 +51,19 @@ function CompletedTasksPage({ message = "" }) {
         {hasLoaded ? (
           <>
             {completedTasks.results.length ? (
+              <InfiniteScroll
+              children= {
               completedTasks.results.map((task) => (
                 <div key={task.id} className="my-2">
                   <Task  {...task} setCompletedTasks={setCompletedTasks} />
                 </div>
               ))
+            }
+            dataLength={completedTasks.results.length}
+            loader={<LoadingSpinner/>}
+            hasMore={!!completedTasks.next}
+            next={()=> fetchMoreData(completedTasks, setCompletedTasks)}
+              />
             ) : (
               <Container>{message}</Container>
             )}

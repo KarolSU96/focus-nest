@@ -72,7 +72,7 @@ function HomeTasksPage({ message = "" }) {
                     loader={<LoadingSpinner/>}
                     hasMore={!!task.next}
                     next={()=> fetchMoreData(tasks, setTasks)}
-                  ></InfiniteScroll>
+                  />
                   
                 ) : (
                   <Container>message={message}</Container>
