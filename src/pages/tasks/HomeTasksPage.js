@@ -17,7 +17,8 @@ function HomeTasksPage({ message = "" }) {
     const fetchTasks = async () => {
       try {
         const { data } = await axiosReq.get(`/tasks/?search=${query}`);
-        setTasks(data);
+        const incompleteTasks = data.results.filter(task => !task.is_done);
+        setTasks({ results: incompleteTasks });
         setHasLoaded(true);
         console.log(data);
       } catch (err) {
