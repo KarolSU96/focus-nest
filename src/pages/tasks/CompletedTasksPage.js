@@ -9,6 +9,7 @@ function CompletedTasksPage({ message = "" }) {
   const [completedTasks, setCompletedTasks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchCompletedTasks = async () => {
@@ -31,15 +32,20 @@ function CompletedTasksPage({ message = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [pathname]);
+  }, [pathname, query]);
 
   return (
     <Row className="justify-content-center">
       <Col className="col-md-8 col-lg-8 mt-3">
-        <Form
-          className=""
-          onSubmit={(event) => event.preventDefault()}
-        />
+      <Form
+              className=""
+              onSubmit={(event) => event.preventDefault()}
+            />
+            <Form.Control 
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              placeholder="Search tasks" />
         {hasLoaded ? (
           <>
             {completedTasks.results.length ? (

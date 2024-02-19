@@ -5,7 +5,6 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Task from "./Task";
-import { getSuggestedQuery } from "@testing-library/react";
 
 function HomeTasksPage({ message = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
