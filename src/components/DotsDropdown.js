@@ -17,7 +17,7 @@ const DotsToggle = React.forwardRef(({ onClick }, ref) => (
   ></i>
 ));
 
-export const DotsDropdown = () => {
+export const DotsDropdown = ({handleEdit, handleDelete}) => {
   return (
     <Dropdown className={`ml-auto`} drop="start">
       <Dropdown.Toggle as={DotsToggle}></Dropdown.Toggle>
@@ -25,14 +25,14 @@ export const DotsDropdown = () => {
       <Dropdown.Menu className={`text-center ${styles.DropdownMenu}`}>
         <Dropdown.Item
           className={styles.DropdownItem}
-          onclick={() => {}}
+          onClick={handleEdit}
           aria-label="edit"
         >
             <i class="fas fa-pencil-alt"/>
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
-          onclick={() => {}}
+          onClick={handleDelete}
           aria-label="delete"
         >
           <i className="fa-solid fa-circle-xmark"/>

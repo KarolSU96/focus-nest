@@ -3,7 +3,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, CardBody, CardTitle } from "react-bootstrap";
 import styles from "../../styles/Task.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
-import {DotsDropdown} from "../../components/DotsDropdown"; 
+import { DotsDropdown } from "../../components/DotsDropdown";
 import { useNavigate } from "react-router-dom";
 
 const Task = (props) => {
@@ -26,6 +26,18 @@ const Task = (props) => {
 
   const navigate = useNavigate();
 
+  const handleEdit = () => {
+    navigate(`/tasks/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/tasks/${id}`);
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Update task state when props change
   useEffect(() => {
@@ -92,7 +104,12 @@ const Task = (props) => {
               {priority === "medium" ? "🟡Medium" : ""}
               {priority === "high" ? "🔴High" : ""}
             </span>
-            {is_owner && taskDetailPage && <DotsDropdown/>}
+            {is_owner && taskDetailPage && (
+              <DotsDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </CardTitle>
         <div className="d-flex justify-content-center text-center">
@@ -115,7 +132,11 @@ const Task = (props) => {
         <div className="d-flex justify-content-center">
           <h5 className="mb-auto">Notes:</h5>
         </div>
-        <div className={`${styles.NotesContainer}d-flex justify-content-center pt-0`}>{notes}</div>
+        <div
+          className={`${styles.NotesContainer}d-flex justify-content-center pt-0`}
+        >
+          {notes}
+        </div>
       </CardBody>
     </Card>
   );
