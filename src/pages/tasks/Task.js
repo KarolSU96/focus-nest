@@ -3,6 +3,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, CardBody, CardTitle } from "react-bootstrap";
 import styles from "../../styles/Task.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
+import {DotsDropdown} from "../../components/DotsDropdown"; 
+import { useNavigate } from "react-router-dom";
 
 const Task = (props) => {
   // Destructure props
@@ -21,6 +23,9 @@ const Task = (props) => {
   // Get current user from context
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const navigate = useNavigate();
+
 
   // Update task state when props change
   useEffect(() => {
@@ -83,11 +88,11 @@ const Task = (props) => {
           <div className="d-flex align-items-center">
             <span>
               Priority:
-              {priority === "low" ? "🔵 Low" : ""}
-              {priority === "medium" ? "🟡 Medium" : ""}
-              {priority === "high" ? "🔴 High" : ""}
+              {priority === "low" ? "🔵Low" : ""}
+              {priority === "medium" ? "🟡Medium" : ""}
+              {priority === "high" ? "🔴High" : ""}
             </span>
-            {is_owner && taskDetailPage && "..."}
+            {is_owner && taskDetailPage && <DotsDropdown/>}
           </div>
         </CardTitle>
         <div className="d-flex justify-content-center text-center">

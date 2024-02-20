@@ -1,0 +1,27 @@
+.DropdownItem {
+    display: inline-block;
+    max-width: 50%;
+    padding: 10px 0px;
+    border-radius: 20px;
+    height:auto;
+  }
+
+
+
+
+.DropdownMenu {
+    border-radius: 20px;
+  padding: 0px;
+  background-color: #D8DBE2;
+}
+
+.DropdownItem:hover
+{
+    background-color: #D8DBE2;
+
+}
+
+.DropdownMenu:hover {
+    background-color: #daa49a;
+  transition: all 0.3s ease 0s;
+}
