@@ -11,6 +11,7 @@ import HomeTasksPage from "./pages/tasks/HomeTasksPage";
 import TaskDetailPage from "./pages/tasks/TaskDetailPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import CompletedTasksPage from "./pages/tasks/CompletedTasksPage";
+import TaskEditForm from "./pages/tasks/TaskEditForm";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
           <Route path="tasks/:id" element={<TaskDetailPage/>} />
+          <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
           <Route path="completed/" element={<CompletedTasksPage/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
