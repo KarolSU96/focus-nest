@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Form, FormControl, Button, Container, Row, Col, Alert } from 'react-bootstrap'
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/TaskCreateForm.module.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { axiosReq } from '../../api/axiosDefaults';
+import { parse, format } from 'date-fns';
 
 function TaskCreateForm() {
   const currentUser = useContext(CurrentUserContext)
@@ -25,6 +27,7 @@ function TaskCreateForm() {
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+    const {id} = useParams();
 
     useEffect(() => {
 
@@ -36,9 +39,25 @@ function TaskCreateForm() {
         } catch (error) {
           console.error('Error fetching collections:', error);
         }
+      };
+
+      const handleMount = async () => {
+        try {
+           const {data} =  await axiosReq.get(`/tasks/${id}`)
+           const {task_name, priority, due_date, is_done, notes, task_collection} = data;
+           
+           const parsedDate = parse(due_date, 'dd MMM yyyy', new Date());
+          const formattedDueDate = format(parsedDate, 'yyyy-MM-dd');
+           setTaskData({task_name, priority, due_date:formattedDueDate, is_done, notes, task_collection});
+        } catch (error) {
+            console.error(error)
+        }
       }
+
+      
       fetchCollections();
-    },[] )
+      handleMount();
+    },[id] )
 
 
     const handleChange = (event) => {
@@ -74,7 +93,7 @@ function TaskCreateForm() {
     
       <Form onSubmit={handleSubmit} className={`${styles.TaskForm} p-4 mt-5 w-75 mx-auto`}>
         <Container className="text-center" >
-          <h2>Add a Task</h2>
+          <h2>Edit Task</h2>
           {currentUser ? userTest : ""}
           <Row className="justify-content-center">
             <Col >
