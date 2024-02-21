@@ -27,7 +27,7 @@ function TaskDetailPage() {
   return (
     <Row className="mt-5 ">
         <Col className="col-8 mx-auto">
-        <Task {...task.results[0]} setTask={setTask} taskDetailPage />
+        <Task {...task.results[0]} setTask={setTask} showDots />
         </Col>
     </Row>
   )

@@ -17,7 +17,7 @@ const Task = (props) => {
     is_done,
     due_date,
     notes,
-    taskDetailPage,
+    showDots,
   } = props;
 
   // Get current user from context
@@ -104,7 +104,7 @@ const Task = (props) => {
               {priority === "medium" ? "🟡Medium" : ""}
               {priority === "high" ? "🔴High" : ""}
             </span>
-            {is_owner && taskDetailPage && (
+            {is_owner && showDots && (
               <DotsDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}

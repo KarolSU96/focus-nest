@@ -65,7 +65,7 @@ function HomeTasksPage({ message = "" }) {
                     .filter((task) => !task.is_done)  // Filter tasks where is_done is false
                     .map((task) => (
                       <div key={task.id} className="my-2">
-                        <Task {...task} setTasks={setTasks} />
+                        <Task {...task} setTasks={setTasks} showDots />
                       </div>
                     ))}
                   dataLength={tasks.results.length}
