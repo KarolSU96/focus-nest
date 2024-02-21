@@ -33,7 +33,13 @@ const Task = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}`);
-      window.location.reload();
+      if (location.pathname !== '/') {
+        // Navigate to the root path
+        history.push('/');
+      } else {
+        // Refresh the window
+        window.location.reload();
+      }
     } catch (err) {
       console.log(err);
     }
