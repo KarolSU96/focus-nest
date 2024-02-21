@@ -33,7 +33,7 @@ const Task = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}`);
-      navigate(-1);
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
