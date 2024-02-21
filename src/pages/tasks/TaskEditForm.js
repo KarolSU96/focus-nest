@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function TaskEditForm() {
+function TaskCreateForm() {
   const currentUser = useContext(CurrentUserContext)
   const userTest = <>{currentUser?.username}</>
 
@@ -89,6 +89,11 @@ function TaskEditForm() {
           onChange={handleChange}
           />
         </Form.Group>
+        {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
         <Form.Group className="mb-3"controlId="taskPriority">
           <Form.Label>Priority</Form.Label>
           <Form.Control
@@ -104,6 +109,12 @@ function TaskEditForm() {
             <option value="high">High</option>
           </Form.Control>
         </Form.Group>
+        {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+        
         <Form.Group className="mb-3" controlId="taskDueDate">
           <Form.Label>Due Date</Form.Label>
           <Form.Control
@@ -114,6 +125,12 @@ function TaskEditForm() {
           onChange={handleChange}
           />
         </Form.Group>
+        {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
         <Form.Group className="mb-3" controlId="taskCollection">
           <Form.Label>Collection</Form.Label>
           <Form.Control
@@ -132,6 +149,11 @@ function TaskEditForm() {
             ))}
           </Form.Control>
         </Form.Group>
+        {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
         <Form.Group className="mb-3"controlId="taskNotes">
           <Form.Label>Notes</Form.Label>
@@ -145,6 +167,11 @@ function TaskEditForm() {
           onChange={handleChange}
           />
         </Form.Group>
+        {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
         
         <Button variant="primary" className={`me-2 ${btnStyles.CancelButton}`}>
           Cancel
@@ -161,4 +188,4 @@ function TaskEditForm() {
   );
 }
 
-export default TaskEditForm
+export default TaskCreateForm
