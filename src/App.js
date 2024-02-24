@@ -12,6 +12,7 @@ import TaskDetailPage from "./pages/tasks/TaskDetailPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import CompletedTasksPage from "./pages/tasks/CompletedTasksPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
+import CollectionCreateForm from "./pages/collections/CollectionCreateForm";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="tasks/:id" element={<TaskDetailPage/>} />
           <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
           <Route path="completed/" element={<CompletedTasksPage/>}/>
+          <Route path="collections/create" element={<CollectionCreateForm/>}/>"
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>

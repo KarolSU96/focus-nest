@@ -45,8 +45,9 @@ function TaskCreateForm() {
         try {
            const {data} =  await axiosReq.get(`/tasks/${id}`)
            const {task_name, priority, due_date, is_done, notes, task_collection} = data;
-           
-           const parsedDate = parse(due_date, 'dd MMM yyyy', new Date());
+
+          // Parse the original date string and format it to "yyyy-MM-dd" 
+          const parsedDate = parse(due_date, 'dd MMM yyyy', new Date());
           const formattedDueDate = format(parsedDate, 'yyyy-MM-dd');
            setTaskData({task_name, priority, due_date:formattedDueDate, is_done, notes, task_collection});
         } catch (error) {
@@ -78,8 +79,8 @@ function TaskCreateForm() {
     formData.append("task_collection", task_collection);
 
     try {
-      const {data} = await axios.post("/tasks/", formData);
-      navigate(`/tasks/${data.id}`);
+      await axiosReq.put(`/tasks/${id}`, formData);
+      navigate(`/tasks/${id}`);
     } catch (err){
       console.log(err);
       console.log(err.response)
@@ -197,7 +198,7 @@ function TaskCreateForm() {
         </Button>
 
         <Button variant="primary" className={`${btnStyles.ConfirmButton}`} type="submit">
-          Create Task
+          Save
         </Button>
         </Col>
         </Row>
