@@ -13,7 +13,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import CompletedTasksPage from "./pages/tasks/CompletedTasksPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import CollectionCreateForm from "./pages/collections/CollectionCreateForm";
-import CollectionPage from "./pages/collections/CollectionPage";
+import CollectionDetailPage from "./pages/collections/CollectionDetailPage";
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
           <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
           <Route path="completed/" element={<CompletedTasksPage/>}/>
           <Route path="collections/create" element={<CollectionCreateForm/>}/>
-          <Route path="collections/:id" element={<CollectionPage/>}/>
+          <Route path="collections/:id" element={<CollectionDetailPage/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>
