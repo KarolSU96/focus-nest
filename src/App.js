@@ -38,7 +38,7 @@ function App() {
           <Route path="completed/" element={<CompletedTasksPage/>}/>
           <Route path="collections/create" element={<CollectionCreateForm/>}/>
           <Route path="collections/:id" element={<CollectionDetailPage/>}/>
-          <Route path="collections:id/edit" element={<CollectionEditForm/>} />
+          <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
           <Route path="*" element={<NotFound/>}/>
         </Routes>
