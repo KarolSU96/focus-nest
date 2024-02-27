@@ -15,6 +15,7 @@ import TaskEditForm from "./pages/tasks/TaskEditForm";
 import CollectionCreateForm from "./pages/collections/CollectionCreateForm";
 import CollectionDetailPage from "./pages/collections/CollectionDetailPage";
 import CollecitonsPage from "./pages/collections/ColectionsPage";
+import CollectionEditForm from "./pages/collections/CollectionEditForm";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="completed/" element={<CompletedTasksPage/>}/>
           <Route path="collections/create" element={<CollectionCreateForm/>}/>
           <Route path="collections/:id" element={<CollectionDetailPage/>}/>
+          <Route path="collections:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
           <Route path="*" element={<NotFound/>}/>
         </Routes>

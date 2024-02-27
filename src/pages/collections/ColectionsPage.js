@@ -58,17 +58,17 @@ function CollecitonsPage({ message = "" }) {
               placeholder="Search tasks" />
             {hasLoaded ? (
               <>
-                {tasks.results.length ? (
+                {collections.results.length ? (
                   <InfiniteScroll
                   children={collections.results
                     .map((collection) => (
                       <div key={collection.id} className="my-2">
-                        <Task {...collection} setCollections={setCollections} showDots />
+                        <Collection {...collection} setCollections={setCollections} showDots />
                       </div>
                     ))}
-                  dataLength={tasks.results.length}
+                  dataLength={collections.results.length}
                   loader={<LoadingSpinner />}
-                  hasMore={!!tasks.next}
+                  hasMore={!!collections.next}
                   next={() => fetchMoreData(collections, setCollections)}
                 />
 

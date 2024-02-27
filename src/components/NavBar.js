@@ -42,7 +42,7 @@ const NavBar = () => {
       <NavLink className={classNameFuncLink} to="/completed">
         <i className="fas fa-check-circle"></i>Completed
       </NavLink>
-      <NavLink className={classNameFuncLink} to="/collectionsList">
+      <NavLink className={classNameFuncLink} to="/collections">
         <i className="fa-solid fa-box"></i>Collections
       </NavLink>
       <NavLink className={classNameFuncLink} to="/contact">
