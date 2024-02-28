@@ -26,7 +26,7 @@ const is_owner = currentUser?.username === owner;
 const navigate = useNavigate();
 
 const handleEdit = () => {
-  navigate(`/task_collections/${id}/edit`);
+  navigate(`/collections/${id}/edit`);
 };
 
 const handleDelete = async () => {

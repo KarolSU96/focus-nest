@@ -12,7 +12,7 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/TaskCreateForm.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { axiosReq , axiosRes} from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { parse, format } from 'date-fns';
 
 function CollectionEditForm() {
