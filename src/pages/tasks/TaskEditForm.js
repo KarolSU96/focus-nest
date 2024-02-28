@@ -68,6 +68,10 @@ function TaskCreateForm() {
       });
     };
 
+  const handleCancel = () => {
+    navigate("/collections/")
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -193,7 +197,9 @@ function TaskCreateForm() {
         </Alert>
       ))}
         
-        <Button variant="primary" className={`me-2 ${btnStyles.CancelButton}`}>
+        <Button variant="primary" className={`me-2 ${btnStyles.CancelButton}`}
+        onClick={handleCancel}
+        >
           Cancel
         </Button>
 
