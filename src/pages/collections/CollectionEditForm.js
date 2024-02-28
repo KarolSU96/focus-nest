@@ -82,6 +82,9 @@ function CollectionEditForm() {
     }));
   };
   
+  const handleCancel = () => {
+    navigate("/collections/")
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -198,6 +201,7 @@ function CollectionEditForm() {
             <Button
               variant="primary"
               className={`me-2 ${btnStyles.CancelButton}`}
+              onClick={handleCancel}
             >
               Cancel
             </Button>
