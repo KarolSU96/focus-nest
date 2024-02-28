@@ -68,6 +68,7 @@ function HomeTasksPage({ message = "" }) {
                         <Task {...task} setTasks={setTasks} showDots />
                       </div>
                     ))}
+                    
                   dataLength={tasks.results.length}
                   loader={<LoadingSpinner />}
                   hasMore={!!tasks.next}
