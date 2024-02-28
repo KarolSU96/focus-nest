@@ -96,7 +96,7 @@ function CollectionEditForm() {
 
     try {
       const { data } = await axiosReq.put(`task_collections/${id}`, formData);
-      navigate(`/task_collections/${data.id}`);
+      navigate(`/collections/${data.id}`);
     } catch (err) {
       console.log(err);
       console.log(err.response);
