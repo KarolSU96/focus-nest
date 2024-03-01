@@ -30,7 +30,6 @@ function CollectionEditForm() {
   const { title, due_date, description, tasks } =
     collectionData;
 
-  const [collections, setCollections] = useState({ results: [] });
   const [tasksData, setTasksData] = useState({ results: [] });
   const { id } = useParams();
 

@@ -44,8 +44,10 @@ function CollectionDetailPage() {
 
   return (
     <Row className="mt-5 ">
-        <Col className="col-8 mx-auto">
+        <Col className="col-12 col-md-8 mx-auto">
         <Collection {...collection.results[0]} setCollection={setCollection} showDots />
+        <hr></hr>
+        <div className="border border-primary px-4">
         {hasLoaded ? (
               <>
                 {tasks.results.length ? (
@@ -53,7 +55,7 @@ function CollectionDetailPage() {
                   children={tasks.results
                     .map((task) => (
                       <div key={task.id} className="my-2">
-                        <Task {...task} setTasks={setTasks} showDots />
+                        <Task  {...task} setTasks={setTasks} showDots />
                       </div>
                     ))}
                     
@@ -72,6 +74,7 @@ function CollectionDetailPage() {
                 <LoadingSpinner  />
               </Container>
             )}
+            </div>
         </Col>
     </Row>
   )
