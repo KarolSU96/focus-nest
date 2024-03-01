@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Collection from "./Collection";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -13,6 +13,7 @@ function CollecitonsPage({ message = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -42,6 +43,11 @@ function CollecitonsPage({ message = "" }) {
     </div>
   );
 
+  const handleClickCollection = (collectionId) => {
+    console.log('handleClickCollection invoked')
+    navigate(`/collections/${collectionId}`);
+  }
+
   return (
     <>
       {currentUser ? (
@@ -63,7 +69,7 @@ function CollecitonsPage({ message = "" }) {
                   children={collections.results
                     .map((collection) => (
                       <div key={collection.id} className="my-2">
-                        <Collection {...collection} setCollections={setCollections} showDots />
+                        <Collection handleClick={() => handleClickCollection(collection.id)} {...collection} setCollections={setCollections} showDots />
                       </div>
                     ))}
                   dataLength={collections.results.length}

@@ -6,6 +6,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { DotsDropdown } from "../../components/DotsDropdown";
 import { useNavigate } from "react-router-dom";
 
+
 const Collection = (props) => {
 // Destructure props
 const {
@@ -17,6 +18,7 @@ const {
   description,
   tasks = [],
   showDots,
+  handleClick,
 } = props;
 
 // Get current user from context
@@ -77,7 +79,7 @@ const [collection, setCollection] = useState({
 
 
 return (
-  <Card className={`${styles.TaskCard}`}>
+  <Card onClick={() => handleClick(id)} className={`${styles.TaskCard}`}>
     <CardBody>
       <CardTitle className="d-flex justify-content-between">
         <span>{title}</span>
