@@ -88,9 +88,6 @@ function CollecitonsPage({ message = "" }) {
               </Container>
             )}
           </Col>
-          <Col className="d-none d-sm-block p-lg-2 col-2">
-            <p>Filters here</p>
-          </Col>
         </Row>
       ) : (
         loggedOutContent

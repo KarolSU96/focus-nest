@@ -6,6 +6,12 @@
   background-color: #a9bcd0;
   border-radius: 8px;
   border: 2px solid #392f5a;
+  overflow: hidden
+}
+
+.TaskCard:hover {
+  border: none;
+  transition: all 1s ease-in-out;
 }
 
 .NotesContainer {

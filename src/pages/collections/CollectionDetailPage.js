@@ -47,7 +47,7 @@ function CollectionDetailPage() {
         <Col className="col-12 col-md-8 mx-auto">
         <Collection {...collection.results[0]} setCollection={setCollection} showDots />
         <hr></hr>
-        <div className="border border-primary px-4">
+        <div className="px-4">
         {hasLoaded ? (
               <>
                 {tasks.results.length ? (
