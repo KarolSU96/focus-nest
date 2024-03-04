@@ -16,6 +16,7 @@ import CollectionCreateForm from "./pages/collections/CollectionCreateForm";
 import CollectionDetailPage from "./pages/collections/CollectionDetailPage";
 import CollecitonsPage from "./pages/collections/ColectionsPage";
 import CollectionEditForm from "./pages/collections/CollectionEditForm";
+import ContactForm from "./pages/contact/ContactForm";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="collections/:id" element={<CollectionDetailPage/>}/>
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
+          <Route path="/contact/" element={<ContactForm/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>
