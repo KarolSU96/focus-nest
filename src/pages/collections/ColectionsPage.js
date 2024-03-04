@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Collection from "./Collection";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import btnStyles from "../../styles/Button.module.css";
 
 function CollecitonsPage({ message = "" }) {
   const [collections, setCollections] = useState({ results: [] });
@@ -18,7 +19,9 @@ function CollecitonsPage({ message = "" }) {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const { data } = await axiosReq.get(`/task_collections/?search=${query}`);
+        const { data } = await axiosReq.get(
+          `/task_collections/?search=${query}`
+        );
         setCollections(data);
         setHasLoaded(true);
         console.log(data);
@@ -27,12 +30,12 @@ function CollecitonsPage({ message = "" }) {
       }
     };
     setHasLoaded(false);
-    const timer = setTimeout(()=> {
+    const timer = setTimeout(() => {
       fetchCollections();
-    }, 1000)
+    }, 1000);
     return () => {
       clearTimeout(timer);
-    }
+    };
   }, [pathname, query]);
 
   const currentUser = useCurrentUser();
@@ -44,47 +47,65 @@ function CollecitonsPage({ message = "" }) {
   );
 
   const handleClickCollection = (collectionId) => {
-    console.log('handleClickCollection invoked')
+    console.log("handleClickCollection invoked");
     navigate(`/collections/${collectionId}`);
-  }
+  };
+
+  const handleClickAddCollection = () => {
+    navigate("/collections/create");
+  };
 
   return (
     <>
       {currentUser ? (
         <Row className="justify-content-center">
           <Col className="col-md-8 col-lg-8 mt-3">
-            <Form
-              className=""
-              onSubmit={(event) => event.preventDefault()}
-            />
-            <Form.Control 
+            <Form className="" onSubmit={(event) => event.preventDefault()} />
+            <Form.Control
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               type="text"
-              placeholder="Search collections" />
+              placeholder="Search collections"
+            />
+            <div
+              className="d-flex justify-content-center mt-2
+              "
+            >
+              <Button
+                onClick={handleClickAddCollection}
+                className={`${btnStyles.ConfirmButton}`}
+              >
+                Add Collection
+              </Button>
+            </div>
             {hasLoaded ? (
               <>
                 {collections.results.length ? (
                   <InfiniteScroll
-                  children={collections.results
-                    .map((collection) => (
+                    children={collections.results.map((collection) => (
                       <div key={collection.id} className="my-2">
-                        <Collection handleClick={() => handleClickCollection(collection.id)} {...collection} setCollections={setCollections} showDots />
+                        <Collection
+                          handleClick={() =>
+                            handleClickCollection(collection.id)
+                          }
+                          {...collection}
+                          setCollections={setCollections}
+                          showDots
+                        />
                       </div>
                     ))}
-                  dataLength={collections.results.length}
-                  loader={<LoadingSpinner />}
-                  hasMore={!!collections.next}
-                  next={() => fetchMoreData(collections, setCollections)}
-                />
-
+                    dataLength={collections.results.length}
+                    loader={<LoadingSpinner />}
+                    hasMore={!!collections.next}
+                    next={() => fetchMoreData(collections, setCollections)}
+                  />
                 ) : (
                   <Container>message={message}</Container>
                 )}
               </>
             ) : (
               <Container className="mt-5">
-                <LoadingSpinner  />
+                <LoadingSpinner />
               </Container>
             )}
           </Col>
