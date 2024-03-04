@@ -89,7 +89,7 @@ function TaskCreateForm() {
           onChange={handleChange}
           />
         </Form.Group>
-        {errors?.title?.map((message, idx) => (
+        {errors?.task_name?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -110,7 +110,7 @@ function TaskCreateForm() {
             <option value="high">High</option>
           </Form.Control>
         </Form.Group>
-        {errors?.title?.map((message, idx) => (
+        {errors?.priority?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -126,7 +126,7 @@ function TaskCreateForm() {
           onChange={handleChange}
           />
         </Form.Group>
-        {errors?.title?.map((message, idx) => (
+        {errors?.due_date?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -150,7 +150,7 @@ function TaskCreateForm() {
             ))}
           </Form.Control>
         </Form.Group>
-        {errors?.title?.map((message, idx) => (
+        {errors?.task_collection?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -168,7 +168,7 @@ function TaskCreateForm() {
           onChange={handleChange}
           />
         </Form.Group>
-        {errors?.title?.map((message, idx) => (
+        {errors?.notes?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
