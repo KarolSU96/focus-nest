@@ -146,7 +146,7 @@ function CollectionEditForm() {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.due_date?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
@@ -191,7 +191,7 @@ function CollectionEditForm() {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.description?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
