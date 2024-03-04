@@ -176,7 +176,7 @@ function CollectionCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.description?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
