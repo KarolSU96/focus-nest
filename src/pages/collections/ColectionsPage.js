@@ -61,7 +61,7 @@ function CollecitonsPage({ message = "" }) {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               type="text"
-              placeholder="Search tasks" />
+              placeholder="Search collections" />
             {hasLoaded ? (
               <>
                 {collections.results.length ? (
