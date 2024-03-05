@@ -66,6 +66,9 @@ const NavBar = () => {
   );
   const loggedOutIcons = (
     <>
+      <NavLink className={classNameFuncLink} to="/contact">
+        <i className="fa-solid fa-envelope"></i>Contact Us
+      </NavLink>
       <NavLink className={classNameFuncLink} to="/signin">
         <i className="fa-solid fa-door-open"></i>Sign In
       </NavLink>
