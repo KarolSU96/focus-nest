@@ -3,7 +3,6 @@ import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import styles from "../../styles/SignInForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import btnStyles from "../../styles/Button.module.css";
-import { axiosReq } from "../../api/axiosDefaults";
 import axios from "axios";
 
 
@@ -17,7 +16,7 @@ const ContactForm = () => {
 
   const { name, email, subject, message } = formData;
 
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
 
@@ -41,7 +40,7 @@ const ContactForm = () => {
     formData.append("subject", subject);
     formData.append("message", message);
     try {
-      const { data } = await axios.post("contact_forms/", formData);
+      await axios.post("contact_forms/", formData);
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);
@@ -53,7 +52,7 @@ const ContactForm = () => {
       <Col className="my-auto mx-auto py-2 p-md-2" md={6}>
         <Container className="text-center">
           <h1 className="text-center">contact form </h1>
-          <Form onSubmit={() => {}}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -130,7 +129,6 @@ const ContactForm = () => {
               className={btnStyles.ConfirmButton}
               variant="primary"
               type="submit"
-              onClick={handleSubmit}
             >
               Send
             </Button>

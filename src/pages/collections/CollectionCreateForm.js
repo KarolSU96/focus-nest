@@ -12,8 +12,7 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/TaskCreateForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { axiosReq , axiosRes} from "../../api/axiosDefaults";
-import axios from "axios";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function CollectionCreateForm() {
   const currentUser = useContext(CurrentUserContext);
@@ -30,13 +29,15 @@ function CollectionCreateForm() {
   const { title, due_date, description, tasks } =
     collectionData;
 
-  const [collections, setCollections] = useState({ results: [] });
+  // eslint-disable-next-line no-unused-vars
+  const [_collections, setCollections] = useState({ results: [] });
   const [tasksData, setTasksData] = useState({ results: [] });
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch collections from the server
     const fetchCollections = async () => {
       try {
         const { data }  = await axiosReq.get("/task_collections/");
@@ -47,6 +48,7 @@ function CollectionCreateForm() {
     };
 
     const fetchTasks = async () => {
+      // Fetch tasks from the server
         try {
           const { data }  = await axiosReq.get('/tasks/');
           setTasksData(data);
@@ -62,18 +64,24 @@ function CollectionCreateForm() {
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
-  
+
+    // Update collectionData based on form input changes
     setCollectionData((prevData) => ({
       ...prevData,
       [name]: type === "select-multiple" ? Array.from(event.target.selectedOptions, (option) => option.value) : value,
     }));
   };
   
+  const handleCancel = () => {
+    // Navigate to the collections page on cancel
+    navigate("/collections/")
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
+    // Append form data for submission
     formData.append("title", title);
     formData.append("due_date", due_date);
     formData.append("description", description);
@@ -82,6 +90,7 @@ function CollectionCreateForm() {
       });
 
     try {
+      // Submit form data to create a new collection
       const { data } = await axiosReq.post("task_collections/", formData);
       navigate(`/task_collections/${data.id}`);
     } catch (err) {
@@ -185,6 +194,7 @@ function CollectionCreateForm() {
             <Button
               variant="primary"
               className={`me-2 ${btnStyles.CancelButton}`}
+              onClick={handleCancel}
             >
               Cancel
             </Button>
