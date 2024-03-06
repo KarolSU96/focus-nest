@@ -17,7 +17,7 @@ import CollectionDetailPage from "./pages/collections/CollectionDetailPage";
 import CollecitonsPage from "./pages/collections/ColectionsPage";
 import CollectionEditForm from "./pages/collections/CollectionEditForm";
 import ContactForm from "./pages/contact/ContactForm";
-import ProfilePage from "./pages/profile/ProfilePage";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
           <Route path="/contact/" element={<ContactForm/>}/>
-          <Route path="/profile/:id" element={<ProfilePage/>}/>
+          <Route path="/profiles/:id" element={<ProfilePage/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>
