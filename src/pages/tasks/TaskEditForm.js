@@ -69,7 +69,7 @@ function TaskCreateForm() {
     };
 
   const handleCancel = () => {
-    navigate("/collections/")
+    navigate("/")
   }
 
   const handleSubmit = async (event) => {

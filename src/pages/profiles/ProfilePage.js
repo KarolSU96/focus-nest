@@ -23,7 +23,7 @@ const ProfilePage = () => {
   const userProfileName = <>{currentUser?.username}</>;
 
   const handleEdit = () => {
-    navigate(`/profile/${id}/edit`);
+    navigate(`/profiles/${id}/edit`);
   };
 
   useEffect(() => {
