@@ -49,9 +49,15 @@ const ProfilePage = () => {
 
     const fetchTasks = async () => {
       try {
-        const { data } = await axiosReq.get(`/tasks/`);
-        setTasks(data);
-        console.log(data);
+        let allTasks = [];
+        let nextPage = "/tasks/";
+        while (nextPage) {
+          const { data } = await axiosReq.get(nextPage);
+          allTasks = allTasks.concat(data.results);
+          nextPage = data.next;
+        }
+        setTasks({ results: allTasks, count: allTasks.length });
+        console.log("All tasks:", allTasks);
       } catch (err) {
         console.log(err);
       }
@@ -65,9 +71,7 @@ const ProfilePage = () => {
 
 
 
-  const completedTasksCount = Array.isArray(tasks.results)
-    ? tasks.results.filter((task) => task.is_done).length
-    : 0;
+  const completedTasksCount = Array.isArray(tasks.results) ? tasks.results.filter((task) => task.is_done).length : 0;
 
     const userProfile = (
       <Col>
@@ -87,7 +91,7 @@ const ProfilePage = () => {
             <p>
               <span className="mx-1">Total tasks: {tasks.count}</span>
               <span className="mx-1">
-                Total collections: {collections.results.length}
+                Total collections: {collections.count}
               </span>
               <span className="mx-1">Finished tasks: {completedTasksCount} </span>
             </p>
