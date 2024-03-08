@@ -19,7 +19,7 @@ const DotsToggle = React.forwardRef(({ onClick }, ref) => (
 
 export const DotsDropdown = ({handleEdit, handleDelete}) => {
   return (
-    <Dropdown className={`ml-auto`} drop="start">
+    <Dropdown className={`ms-1 ${styles.DropdownMain}`} drop="start">
       <Dropdown.Toggle as={DotsToggle}></Dropdown.Toggle>
 
       <Dropdown.Menu className={`text-center ${styles.DropdownMenu}`}>

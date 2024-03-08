@@ -1,3 +1,7 @@
+.DropdownMain:hover {
+  color: #daa49a;
+}
+
 .DropdownItem {
   display: inline-block;
   max-width: 50%;
