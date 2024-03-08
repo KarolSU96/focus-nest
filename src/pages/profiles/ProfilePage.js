@@ -57,7 +57,6 @@ const ProfilePage = () => {
           nextPage = data.next;
         }
         setTasks({ results: allTasks, count: allTasks.length });
-        console.log("All tasks:", allTasks);
       } catch (err) {
         console.log(err);
       }
