@@ -85,7 +85,7 @@ const ProfilePage = () => {
             <h4>{userProfileName}'s Profile</h4>
   
             <p>
-              <span className="mx-1">Total tasks: {tasks.results.length}</span>
+              <span className="mx-1">Total tasks: {tasks.count}</span>
               <span className="mx-1">
                 Total collections: {collections.results.length}
               </span>
