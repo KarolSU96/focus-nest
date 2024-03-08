@@ -83,13 +83,15 @@ const ProfileEditForm = () => {
         ...currentUser,
         profile_image: data.image,
       }));
+
+      navigate(`/profiles/${id}`)
     } catch (err) {
       console.log(err);
     }
   };
 
   const handleCancel = () => {
-    navigate("/");
+    navigate(`/profiles/${id}`)
   };
 
   const handleFileChange = (e) => {
