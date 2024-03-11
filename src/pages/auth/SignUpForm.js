@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpForm.module.css";
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Image,
+  Col,
+  Row,
+  Container,
+  Alert,
+} from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
+  // State for handling user registration data and errors
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -17,6 +26,7 @@ const SignUpForm = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle input changes
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -24,21 +34,27 @@ const SignUpForm = () => {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Attempt to register the user using the provided credentials
       await axios.post("/dj-rest-auth/registration/", signUpData);
+      // Redirect to the sign-in page after successful registration
       navigate("/signin");
     } catch (err) {
+      // If there are errors, set the errors state for display in the UI
       setErrors(err.response?.data);
     }
   };
 
   return (
+    // Main container for the sign-up form
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className="text-center">
           <h1 className="text-center">sign up</h1>
+          {/* Sign-up form using React Bootstrap components */}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="Username">
               <Form.Label>Username</Form.Label>
@@ -50,12 +66,13 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display username-related errors */}
             {errors.username?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
-
+            {/* Password input field */}
             <Form.Group className="mb-3" controlId="password1">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -66,11 +83,14 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display password-related errors */}
             {errors.password1?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
+
+            {/* Confirm password input field */}
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
@@ -81,6 +101,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display confirm password-related errors */}
             {errors.password2?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
@@ -95,6 +116,7 @@ const SignUpForm = () => {
             </Button>
           </Form>
         </Container>
+        {/* Container for the link to the sign-in page */}
         <Container className="mt-4 text-center">
           <Link to="/signin">
             Already have an account?{" "}
@@ -105,6 +127,7 @@ const SignUpForm = () => {
         </Container>
       </Col>
       <Col className="my-auto d-none d-md-block" md={6}>
+        {/* Image for the sign-up form */}
         <Image
           className={styles.Image}
           src={
