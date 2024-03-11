@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Profile from "./Profile";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Button, Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import styles from "../../styles/Task.module.css";
@@ -10,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const ProfilePage = () => {
 
-
+  // State variables
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
   const { id } = useParams();
@@ -20,13 +19,17 @@ const ProfilePage = () => {
   const [collections, setCollections] = useState({ results: [] });
   const [tasks, setTasks] = useState({ results: [] });
 
+  // JSX element for displaying user's profile name
   const userProfileName = <>{currentUser?.username}</>;
 
+  // Function to handle navigation to profile editing page
   const handleEdit = () => {
     navigate(`/profiles/${id}/edit`);
   };
 
+   // useEffect for fetching profile data, tasks, and collections on component mount
   useEffect(() => {
+    // Function to fetch user profile data
     const fetchProfile = async () => {
       try {
         const { data } = await axiosReq.get(`/profiles/${id}`);
@@ -37,6 +40,7 @@ const ProfilePage = () => {
       }
     };
 
+    // Function to fetch user's task collections
     const fetchCollections = async () => {
       try {
         const { data } = await axiosReq.get("/task_collections/");
@@ -47,6 +51,7 @@ const ProfilePage = () => {
       }
     };
 
+    // Function to fetch user's tasks
     const fetchTasks = async () => {
       try {
         let allTasks = [];
@@ -62,18 +67,21 @@ const ProfilePage = () => {
       }
     };
 
+    // Execute all the fetch functions
     fetchProfile();
     fetchTasks();
     fetchCollections();
     setHasLoaded(true);
-  }, []);
+  }, [id]);
 
 
-
+  // Calculate the number of completed tasks
   const completedTasksCount = Array.isArray(tasks.results) ? tasks.results.filter((task) => task.is_done).length : 0;
 
+    // JSX element for displaying user's profile
     const userProfile = (
       <Col>
+        {/* Display user's profile image */}
         <Row className="text-center">
           <Col>
             <Image
@@ -85,8 +93,8 @@ const ProfilePage = () => {
         </Row>
         <Row className="text-center">
           <Col>
+            {/* Display user's name and profile summary */}
             <h4>{userProfileName}'s Profile</h4>
-  
             <p>
               <span className="mx-1">Total tasks: {tasks.count}</span>
               <span className="mx-1">
@@ -101,11 +109,13 @@ const ProfilePage = () => {
           <h5>
             Current goals:
           </h5>
+          {/* Display user's current goals or a message if not available */}
           <div>{profile.current_goals ? profile.current_goals : "Please add your goals"}</div>
           </Col>
         </Row>
         <Row className="text-center mb-2">
           <Col>
+            {/* Button to navigate to the profile editing page */}
             <Button
               variant="primary"
               className={`ms-1 mt-2 ${btnStyles.ConfirmButton}`}
@@ -121,6 +131,7 @@ const ProfilePage = () => {
     <Row className="justify-content-center">
       <Col className="col-md-8 col-lg-8 mt-3">
         <Container className={styles.TaskCard}>
+          {/* Display the user's profile or a spinner while loading */}
           {hasLoaded ? userProfile : <Spinner />}
         </Container>
       </Col>

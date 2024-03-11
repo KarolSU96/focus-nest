@@ -13,7 +13,6 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../styles/TaskCreateForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
