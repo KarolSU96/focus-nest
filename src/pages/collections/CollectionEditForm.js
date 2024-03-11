@@ -13,12 +13,15 @@ import styles from "../../styles/TaskCreateForm.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
-import { parse, format } from 'date-fns';
+import { parse, format } from "date-fns";
 
 function CollectionEditForm() {
+  // Access the current user from the context
   const currentUser = useContext(CurrentUserContext);
+  // JSX to display the current user's username
   const userTest = <>{currentUser?.username}</>;
 
+  // State to manage the form data for collection
   const [collectionData, setCollectionData] = useState({
     title: "",
     due_date: "",
@@ -27,81 +30,109 @@ function CollectionEditForm() {
     tasks: [],
   });
 
-  const { title, due_date, description, tasks } =
-    collectionData;
+  const { title, due_date, description, tasks } = collectionData;
 
+  // State to store tasks data
   const [tasksData, setTasksData] = useState({ results: [] });
+
+  // Extracting 'id' from route parameters
   const { id } = useParams();
 
+  // State to manage form submission errors
   const [errors, setErrors] = useState({});
+
+  // Access the navigation function from 'react-router-dom'
   const navigate = useNavigate();
 
+  // Fetch collection details and associated tasks on component mount
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data }  = await axiosReq.get(`/task_collections/${id}`);
-        const {title, due_date, created_at, description, tasks} = data;
+        // Fetch collection details
+        const { data } = await axiosReq.get(`/task_collections/${id}`);
+        const { title, due_date, created_at, description, tasks } = data;
 
-        const parsedDate = parse(due_date, 'dd MMM yyyy', new Date());
-        const formattedDueDate = format(parsedDate, 'yyyy-MM-dd');
-        setCollectionData({title, due_date:formattedDueDate, created_at, description, tasks})
+        // Parse and format the due date for proper display in the form
+        const parsedDate = parse(due_date, "dd MMM yyyy", new Date());
+        const formattedDueDate = format(parsedDate, "yyyy-MM-dd");
+
+        // Update the form data state with fetched details
+        setCollectionData({
+          title,
+          due_date: formattedDueDate,
+          created_at,
+          description,
+          tasks,
+        });
       } catch (error) {
         console.error("Error fetching collections:", error);
       }
     };
 
+    // Fetch all tasks for populating the tasks dropdown
     const fetchTasks = async () => {
       try {
         let allTasks = [];
-        let nextPage = 'https://focus-nest-api-a8aee1208ee3.herokuapp.com/tasks/';
-    
+        let nextPage =
+          "https://focus-nest-api-a8aee1208ee3.herokuapp.com/tasks/";
+
         while (nextPage) {
           const { data } = await axiosReq.get(nextPage);
           const { results, next } = data;
-    
+
           allTasks = allTasks.concat(results);
           nextPage = next;
         }
         setTasksData({ results: allTasks });
-        } catch (error) {
-          console.error('Error fetching tasks:', error);
-        }
-      };
-      
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    // Execute both functions on component mount
     handleMount();
     fetchTasks();
   }, [id]);
 
+  // Handle form input changes
   const handleChange = (event) => {
     const { name, value, type } = event.target;
-  
+
     setCollectionData((prevData) => ({
       ...prevData,
-      [name]: type === "select-multiple" ? Array.from(event.target.selectedOptions, (option) => option.value) : value,
+      [name]:
+        type === "select-multiple"
+          ? Array.from(event.target.selectedOptions, (option) => option.value)
+          : value,
     }));
   };
-  
-  const handleCancel = () => {
-    navigate("/collections/")
-  }
 
+  // Handle cancellation by navigating back to the collections page
+  const handleCancel = () => {
+    navigate("/collections/");
+  };
+
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
+    // Append form data for submission
     formData.append("title", title);
     formData.append("due_date", due_date);
     formData.append("description", description);
-      tasks.forEach((taskId) => {
-        formData.append("tasks", taskId);
-      });
+    tasks.forEach((taskId) => {
+      formData.append("tasks", taskId);
+    });
 
     try {
+      // Submit form data to update the existing collection
       const { data } = await axiosReq.put(`task_collections/${id}`, formData);
       navigate(`/collections/${data.id}`);
     } catch (err) {
       console.log(err);
       console.log(err.response);
+      // Check for non-401 errors and set errors state accordingly
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -115,9 +146,11 @@ function CollectionEditForm() {
     >
       <Container className="text-center">
         <h2>Add a Collection</h2>
+        {/* Display the current user's username */}
         {currentUser ? userTest : ""}
         <Row className="justify-content-center">
           <Col>
+            {/* Title */}
             <Form.Group className="mb-3" controlId="taskName">
               <Form.Label>Collection Title</Form.Label>
               <FormControl
@@ -130,12 +163,13 @@ function CollectionEditForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display title-related errors */}
             {errors?.title?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
-
+            {/* Due Date */}
             <Form.Group className="mb-3" controlId="taskDueDate">
               <Form.Label>Due Date</Form.Label>
               <Form.Control
@@ -146,12 +180,13 @@ function CollectionEditForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display due date-related errors */}
             {errors?.due_date?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
-
+            {/* Tasks */}
             <Form.Group className="mb-3" controlId="tasks">
               <Form.Label>Tasks</Form.Label>
               <Form.Control
@@ -166,6 +201,7 @@ function CollectionEditForm() {
                   {" "}
                   Select the tasks
                 </option>
+                {/* Map tasks data to options in the select dropdown */}
                 {tasksData.results.map((tasksData) => (
                   <option key={tasksData.id} value={tasksData.id}>
                     {tasksData.task_name}
@@ -173,6 +209,7 @@ function CollectionEditForm() {
                 ))}
               </Form.Control>
             </Form.Group>
+            {/* Display tasks-related errors */}
             {errors?.tasks?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
@@ -191,6 +228,7 @@ function CollectionEditForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display description-related errors */}
             {errors?.description?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
