@@ -15,9 +15,13 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function CollectionCreateForm() {
+  // Access current user information from context
   const currentUser = useContext(CurrentUserContext);
+
+  // JSX to display current user's username or empty string if not logged in
   const userTest = <>{currentUser?.username}</>;
 
+  // State to manage form data
   const [collectionData, setCollectionData] = useState({
     title: "",
     due_date: "",
@@ -26,11 +30,13 @@ function CollectionCreateForm() {
     tasks: [],
   });
 
-  const { title, due_date, description, tasks } =
-    collectionData;
+  // Destructure form data properties for ease of use
+  const { title, due_date, description, tasks } = collectionData;
 
-  // eslint-disable-next-line no-unused-vars
+  // State ; eslint-disable-next-line no-unused-var - collection
   const [_collections, setCollections] = useState({ results: [] });
+
+  // State to hold fetched tasks
   const [tasksData, setTasksData] = useState({ results: [] });
 
   const [errors, setErrors] = useState({});
@@ -40,7 +46,7 @@ function CollectionCreateForm() {
     // Fetch collections from the server
     const fetchCollections = async () => {
       try {
-        const { data }  = await axiosReq.get("/task_collections/");
+        const { data } = await axiosReq.get("/task_collections/");
         setCollections(data);
       } catch (error) {
         console.error("Error fetching collections:", error);
@@ -49,15 +55,15 @@ function CollectionCreateForm() {
 
     const fetchTasks = async () => {
       // Fetch tasks from the server
-        try {
-          const { data }  = await axiosReq.get('/tasks/');
-          setTasksData(data);
-          console.log('Tasks response:', data);
-        } catch (error) {
-          console.error('Error fetching tasks:', error);
-        }
-      };
-      
+      try {
+        const { data } = await axiosReq.get("/tasks/");
+        setTasksData(data);
+        console.log("Tasks response:", data);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
     fetchCollections();
     fetchTasks();
   }, []);
@@ -68,14 +74,17 @@ function CollectionCreateForm() {
     // Update collectionData based on form input changes
     setCollectionData((prevData) => ({
       ...prevData,
-      [name]: type === "select-multiple" ? Array.from(event.target.selectedOptions, (option) => option.value) : value,
+      [name]:
+        type === "select-multiple"
+          ? Array.from(event.target.selectedOptions, (option) => option.value)
+          : value,
     }));
   };
-  
+
   const handleCancel = () => {
     // Navigate to the collections page on cancel
-    navigate("/collections/")
-  }
+    navigate("/collections/");
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,9 +94,9 @@ function CollectionCreateForm() {
     formData.append("title", title);
     formData.append("due_date", due_date);
     formData.append("description", description);
-      tasks.forEach((taskId) => {
-        formData.append("tasks", taskId);
-      });
+    tasks.forEach((taskId) => {
+      formData.append("tasks", taskId);
+    });
 
     try {
       // Submit form data to create a new collection
@@ -109,9 +118,11 @@ function CollectionCreateForm() {
     >
       <Container className="text-center">
         <h2>Add a Collection</h2>
+        {/* Display current user's username or empty string if not logged in */}
         {currentUser ? userTest : ""}
         <Row className="justify-content-center">
           <Col>
+            {/* Collection Title */}
             <Form.Group className="mb-3" controlId="taskName">
               <Form.Label>Collection Title</Form.Label>
               <FormControl
@@ -124,12 +135,13 @@ function CollectionCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display title-related errors */}
             {errors?.title?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
-
+            {/* Due Date */}
             <Form.Group className="mb-3" controlId="taskDueDate">
               <Form.Label>Due Date</Form.Label>
               <Form.Control
@@ -140,12 +152,13 @@ function CollectionCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display due date-related errors */}
             {errors?.due_date?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
-
+            {/* Tasks */}
             <Form.Group className="mb-3" controlId="tasks">
               <Form.Label>Tasks</Form.Label>
               <Form.Control
@@ -160,6 +173,7 @@ function CollectionCreateForm() {
                   {" "}
                   Select the tasks
                 </option>
+                {/* Display taskData-related errors */}
                 {tasksData.results.map((tasksData) => (
                   <option key={tasksData.id} value={tasksData.id}>
                     {tasksData.task_name}
@@ -172,7 +186,7 @@ function CollectionCreateForm() {
                 {message}
               </Alert>
             ))}
-
+            {/* Description */}
             <Form.Group className="mb-3" controlId="taskNotes">
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -185,12 +199,14 @@ function CollectionCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display description-related errors, if any */}
             {errors?.description?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
             ))}
 
+            {/* Cancel Button */}
             <Button
               variant="primary"
               className={`me-2 ${btnStyles.CancelButton}`}
@@ -199,6 +215,7 @@ function CollectionCreateForm() {
               Cancel
             </Button>
 
+            {/* Create Collection Button */}
             <Button
               variant="primary"
               className={`${btnStyles.ConfirmButton}`}

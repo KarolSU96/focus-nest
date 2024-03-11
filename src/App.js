@@ -40,7 +40,7 @@ function App() {
           <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
           <Route path="completed/" element={<CompletedTasksPage/>}/>
           <Route path="collections/create" element={<CollectionCreateForm/>}/>
-          <Route path="collections/:id" element={<CollectionDetailPage/>}/>
+          <Route path="collections/:id" element={<CollectionDetailPage message=" No taks found for this collection."/>}/>
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
           <Route path="/contact/" element={<ContactForm/>}/>

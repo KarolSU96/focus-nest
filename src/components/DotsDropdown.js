@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/DotsDropdown.module.css";
-import { DropdownMenu } from "react-bootstrap";
-import btnStyles from "../styles/Button.module.css";
+
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
