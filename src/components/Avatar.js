@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/Avatar.module.css";
 
 const Avatar = ({ src, height = 45, text }) => {
+  // Avatar image used for users Profile
   return (
     <span>
       <img

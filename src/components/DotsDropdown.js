@@ -17,25 +17,29 @@ const DotsToggle = React.forwardRef(({ onClick }, ref) => (
   ></i>
 ));
 
-export const DotsDropdown = ({handleEdit, handleDelete}) => {
+export const DotsDropdown = ({ handleEdit, handleDelete }) => {
+  // Dropdown toggle using the custom DotsToggle component
   return (
     <Dropdown className={`ms-1 ${styles.DropdownMain}`} drop="start">
       <Dropdown.Toggle as={DotsToggle}></Dropdown.Toggle>
 
       <Dropdown.Menu className={`text-center ${styles.DropdownMenu}`}>
+        {/* Dropdown Items for handling edit and delete */}
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleEdit}
           aria-label="edit"
         >
-            <i class="fas fa-pencil-alt"/>
+          {/* Edit Icon */}
+          <i class="fas fa-pencil-alt" />
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleDelete}
           aria-label="delete"
         >
-          <i className="fa-solid fa-circle-xmark"/>
+          {/* Delete Icon */}
+          <i className="fa-solid fa-circle-xmark" />
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

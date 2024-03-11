@@ -21,24 +21,26 @@ const NavBar = () => {
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
 
-  const {expanded, setExpanded, ref} = useClickOutsideToggle();
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
 
+  // NavLink for adding a new task
   const addTaskIcon = (
     <NavLink className={classNameFuncLink} to="/tasks/create">
       <i className="fa-solid fa-plus"></i>Add Task
     </NavLink>
   );
 
+  // Icons for logged-in users
   const loggedInIcons = (
     <>
       <NavLink className={classNameFuncLink} to="/completed">
@@ -55,8 +57,7 @@ const NavBar = () => {
         to="/signout"
         onClick={handleSignOut}
       >
-        <i className="fa-solid fa-door-open" ></i>Sign
-        Out
+        <i className="fa-solid fa-door-open"></i>Sign Out
       </NavLink>
       <NavLink
         className={styles.NavLinkWithAvatar}
@@ -66,6 +67,8 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
+  // Icons for logged-out users
   const loggedOutIcons = (
     <>
       <NavLink className={classNameFuncLink} to="/contact">
@@ -104,6 +107,8 @@ const NavBar = () => {
             <NavLink className={classNameFuncLink} to="/">
               <i className="fa-solid fa-house"></i>Home
             </NavLink>
+
+            {/* Render icons based on user authentication status */}
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
