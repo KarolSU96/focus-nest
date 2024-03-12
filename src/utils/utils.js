@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
 
 export const fetchMoreData = async (resource, setResource) => {
@@ -19,4 +20,20 @@ export const fetchMoreData = async (resource, setResource) => {
   } catch(err) {
     console.error("Error fetching more data:", err);
   }
+};
+
+// function stores logged in users resfresh token timestamp in localstorage
+export const setTokenTimestamp = (data) => {
+  const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+// function makes attempts to refresh the eaccess token only if the timestamp extists
+export const shouldRefreshToken = () => {
+  return !!localStorage.getItem("refreshTokenTimestamp");
+};
+
+// functionremoves the timestam then the token expires or user doesn't exist
+export const removeTokenTimestamp = () => {
+  localStorage.removeItem("refreshTokenTimestamp");
 };

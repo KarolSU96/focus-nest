@@ -5,6 +5,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
   // State for handling user authentication and error messages
@@ -27,11 +28,11 @@ function SignInForm() {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       // If successful, set the current user and navigate to the home page
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       navigate("/");
     } catch (err) {
       // If there are errors, set the errors state for display in the UI
       setErrors(err.response?.data);
-
     }
   };
 
