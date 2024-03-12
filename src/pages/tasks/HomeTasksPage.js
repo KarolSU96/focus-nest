@@ -29,7 +29,6 @@ function HomeTasksPage({ message = "" }) {
         data.results.filter((task) => !task.is_done);
         setTasks(data);
         setHasLoaded(true);
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
