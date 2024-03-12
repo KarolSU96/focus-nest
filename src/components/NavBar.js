@@ -11,6 +11,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { removeTokenTimestamp } from "../utils/utils";
 
 // function applies active class name while the the navlink is active
 const classNameFuncLink = ({ isActive }) =>
@@ -27,6 +28,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
       navigate("/");
     } catch (err) {
       console.log(err);
