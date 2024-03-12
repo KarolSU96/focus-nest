@@ -34,7 +34,6 @@ const ProfilePage = () => {
       try {
         const { data } = await axiosReq.get(`/profiles/${id}`);
         setProfile(data);
-        console.log("Profile data:", data);
       } catch (err) {
         console.log(err);
       }
@@ -45,7 +44,6 @@ const ProfilePage = () => {
       try {
         const { data } = await axiosReq.get("/task_collections/");
         setCollections(data);
-        console.log("Collections response:", data);
       } catch (error) {
         console.error("Error fetching collections:", error);
       }

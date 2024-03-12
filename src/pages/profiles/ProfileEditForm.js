@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Form,
   FormControl,
@@ -92,6 +92,10 @@ const ProfileEditForm = () => {
       navigate(`/profiles/${id}`);
     } catch (err) {
       console.log(err);
+      console.log(err.response)
+      if (err.response?.status !==401) {
+        setErrors(err.response?.data);
+      }
     }
   };
 
