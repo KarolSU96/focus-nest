@@ -24,7 +24,6 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 function App() {
 
 
-
   return (
     <div className={styles.App}>
       <Navbar />
