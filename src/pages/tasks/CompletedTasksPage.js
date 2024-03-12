@@ -28,7 +28,6 @@ function CompletedTasksPage({ message = "" }) {
         // Set completed tasks and update loading status
         setCompletedTasks(data);
         setHasLoaded(true);
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
