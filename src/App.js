@@ -23,7 +23,6 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
 
-  const currentUser = useCurrentUser();
 
 
   return (
