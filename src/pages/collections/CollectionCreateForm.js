@@ -33,7 +33,8 @@ function CollectionCreateForm() {
   // Destructure form data properties for ease of use
   const { title, due_date, description, tasks } = collectionData;
 
-  // State ; eslint-disable-next-line no-unused-var - collection
+  // State collection
+  // eslint-disable-next-line
   const [_collections, setCollections] = useState({ results: [] });
 
   // State to hold fetched tasks

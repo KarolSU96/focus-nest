@@ -65,7 +65,8 @@ const Collection = (props) => {
     }));
   }, [id, owner, title, created_at, due_date, description, tasks]);
 
-  // Initialize collection state with default values + eslint-disable-next-line no-unused-var
+  // Initialize collection state with default values
+  // eslint-disable-next-line
   const [_collection, setCollection] = useState({
     id,
     owner,
