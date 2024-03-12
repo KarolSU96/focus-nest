@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import React from "react";
 import {
@@ -20,7 +20,6 @@ const classNameFuncLink = ({ isActive }) =>
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  const navigate = useNavigate();
 
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
@@ -29,7 +28,6 @@ const NavBar = () => {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
-      navigate("/");
     } catch (err) {
       console.log(err);
     }
