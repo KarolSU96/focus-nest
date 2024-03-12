@@ -9,7 +9,6 @@ import NotFound from "./components/PageNotFound";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import HomeTasksPage from "./pages/tasks/HomeTasksPage";
 import TaskDetailPage from "./pages/tasks/TaskDetailPage";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
 import CompletedTasksPage from "./pages/tasks/CompletedTasksPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import CollectionCreateForm from "./pages/collections/CollectionCreateForm";
