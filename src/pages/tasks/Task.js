@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle } from "react-bootstrap";
 import styles from "../../styles/Task.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { DotsDropdown } from "../../components/DotsDropdown";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Task = (props) => {
   // Destructure props
@@ -20,6 +20,8 @@ const Task = (props) => {
     showDots,
   } = props;
 
+  // Use useLocation hook to get the current location
+  const location = useLocation(); 
   // Get current user from context
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
