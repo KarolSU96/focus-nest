@@ -35,7 +35,7 @@ const Task = (props) => {
       await axiosRes.delete(`/tasks/${id}`);
       if (location.pathname !== '/') {
         // Navigate to the root path
-        history.push('/');
+        navigate('/');
       } else {
         // Refresh the window
         window.location.reload();

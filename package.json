@@ -2,6 +2,10 @@
   "name": "focus-nest",
   "version": "0.1.0",
   "private": true,
+  "enrines": {
+  "node": "20.10.0",
+  "npm": "10.2.3"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
