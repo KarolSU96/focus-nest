@@ -85,7 +85,7 @@ function HomeTasksPage({ message = "" }) {
                     next={() => fetchMoreData(tasks, setTasks)}
                   />
                 ) : (
-                  <Container>message={message}</Container>
+                  <Container className="d-flex justify-content-center">message={message}</Container>
                 )}
               </>
             ) : (
