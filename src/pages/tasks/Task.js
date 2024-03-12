@@ -21,7 +21,7 @@ const Task = (props) => {
   } = props;
 
   // Use useLocation hook to get the current location
-  const location = useLocation(); 
+  const location = useLocation();
   // Get current user from context
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -35,9 +35,9 @@ const Task = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}`);
-      if (location.pathname !== '/') {
+      if (location.pathname !== "/") {
         // Navigate to the root path
-        navigate('/');
+        navigate("/");
       } else {
         // Refresh the window
         window.location.reload();
@@ -77,15 +77,8 @@ const Task = (props) => {
   // Handle marking task as done
   const handleDone = async () => {
     try {
-      console.log(
-        "Before PUT Request - task_name:",
-        task.task_name,
-        "priority:",
-        task.priority
-      );
-
       // Make a PUT request to update the task status
-      const { data } = await axiosRes.put(`tasks/${id}`, {
+      await axiosRes.put(`tasks/${id}`, {
         is_done: !task.is_done,
         task_name: task.task_name,
         priority: task.priority,
@@ -101,8 +94,10 @@ const Task = (props) => {
   };
 
   return (
+    // Task card
     <Card className={`${styles.TaskCard}`}>
       <CardBody>
+        {/* Task title and priority */}
         <CardTitle className="d-flex justify-content-between">
           <span>{task_name}</span>
           <div className="d-flex align-items-center">
@@ -112,6 +107,7 @@ const Task = (props) => {
               {priority === "medium" ? "🟡Medium" : ""}
               {priority === "high" ? "🔴High" : ""}
             </span>
+            {/* Display dots dropdown menu for authorized user */}
             {is_owner && showDots && (
               <DotsDropdown
                 handleEdit={handleEdit}
@@ -120,8 +116,11 @@ const Task = (props) => {
             )}
           </div>
         </CardTitle>
+        {/* Task details */}
         <div className="d-flex justify-content-center text-center">
+          {/* Task creation date */}
           <span className={styles.TaskSpan}>Created at: {created_at}</span>
+          {/* Checkbox to mark task as done */}
           <span className={styles.TaskSpan}>
             Mark as Done:{" "}
             {is_owner && (
@@ -134,9 +133,11 @@ const Task = (props) => {
               </label>
             )}
           </span>
+          {/* Task due date */}
           <span className={styles.TaskSpan}>Due Date: {due_date}</span>
         </div>
         <hr></hr>
+        {/* Task notes */}
         <div className="d-flex justify-content-center">
           <h5 className="mb-auto">Notes:</h5>
         </div>
