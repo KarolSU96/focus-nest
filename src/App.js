@@ -43,11 +43,12 @@ function App() {
           <Route path="collections/:id" element={<CollectionDetailPage message=" No taks found for this collection."/>}/>
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
+          <Route path="/profiles/:id" element={<ProfilePage/>}/>
+          <Route path="profiles/:id/edit" element={<ProfileEditForm/>}/>
           </>
           )}
           <Route path="/contact/" element={<ContactForm/>}/>
-          <Route path="/profiles/:id" element={<ProfilePage/>}/>
-          <Route path="profiles/:id/edit" element={<ProfileEditForm/>}/>
+          
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </Container>
