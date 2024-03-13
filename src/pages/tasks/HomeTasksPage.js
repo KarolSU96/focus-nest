@@ -24,10 +24,11 @@ function HomeTasksPage({ message = "" }) {
     // Function to fetch tasks from the server based on the search query
     const fetchTasks = async () => {
       try {
-        const { data } = await axiosReq.get(`/tasks/?search=${query}`);
+        const { data } = await axiosReq.get(`/tasks/?owner=${currentUser.username}&search=${query}`);
+        console.log(currentUser.username)
         // Filter incomplete tasks from the results
-        data.results.filter((task) => !task.is_done);
-        setTasks(data);
+        const filteredTasks = data.results.filter(task => !task.is_done && task.owner === currentUser.username);
+        setTasks(filteredTasks);
         setHasLoaded(true);
       } catch (err) {
       }
@@ -69,7 +70,7 @@ function HomeTasksPage({ message = "" }) {
             {/* Display tasks or a message if no tasks are found */}
             {hasLoaded ? (
               <>
-                {tasks.results.length ? (
+                {tasks.results?.length ? (
                   <InfiniteScroll
                     children={tasks.results
                       .filter((task) => !task.is_done) // Filter tasks where is_done is false
@@ -84,7 +85,7 @@ function HomeTasksPage({ message = "" }) {
                     next={() => fetchMoreData(tasks, setTasks)}
                   />
                 ) : (
-                  <Container className="d-flex justify-content-center">message={message}</Container>
+                  <Container className="d-flex justify-content-center">{message}</Container>
                 )}
               </>
             ) : (
