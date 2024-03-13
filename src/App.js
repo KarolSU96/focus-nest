@@ -33,7 +33,7 @@ function App() {
           <Route path="/" element={<HomeTasksPage message="No matches found. Please refine your search terms."/>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
-          { user && (
+          {user && (
           <>
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
           <Route path="tasks/:id" element={<TaskDetailPage/>} />
