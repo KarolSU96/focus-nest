@@ -130,8 +130,6 @@ function CollectionEditForm() {
       const { data } = await axiosReq.put(`task_collections/${id}`, formData);
       navigate(`/collections/${data.id}`);
     } catch (err) {
-      console.log(err);
-      console.log(err.response);
       // Check for non-401 errors and set errors state accordingly
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);

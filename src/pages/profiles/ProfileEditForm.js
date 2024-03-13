@@ -42,14 +42,11 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       // Check if the user is authorized to edit the profile
       if (currentUser?.profile_id?.toString() === id) {
-        console.log(id);
         try {
           const { data } = await axiosReq.get(`/profiles/${id}`);
           const { current_goals, image } = data;
           setProfileData({ current_goals, image });
-          console.log(data);
         } catch (err) {
-          console.log(err);
           navigate("/");
         }
       } else {
@@ -91,8 +88,6 @@ const ProfileEditForm = () => {
       // Redirect to the user's profile page
       navigate(`/profiles/${id}`);
     } catch (err) {
-      console.log(err);
-      console.log(err.response)
       if (err.response?.status !==401) {
         setErrors(err.response?.data);
       }

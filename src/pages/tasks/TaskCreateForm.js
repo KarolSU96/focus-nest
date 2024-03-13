@@ -79,8 +79,6 @@ function TaskCreateForm() {
       // If task creation is successful, navigate to the newly created task's page
       navigate(`/tasks/${data.id}`);
     } catch (err) {
-      console.log(err);
-      console.log(err.response);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

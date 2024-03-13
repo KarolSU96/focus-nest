@@ -29,7 +29,6 @@ function CompletedTasksPage({ message = "" }) {
         setCompletedTasks(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
       }
     };
 

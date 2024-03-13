@@ -43,7 +43,6 @@ const Task = (props) => {
         window.location.reload();
       }
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -89,7 +88,6 @@ const Task = (props) => {
         is_done: !prevTask.is_done,
       }));
     } catch (err) {
-      console.log(err);
     }
   };
 

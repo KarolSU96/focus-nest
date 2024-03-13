@@ -35,7 +35,6 @@ const ProfilePage = () => {
         const { data } = await axiosReq.get(`/profiles/${id}`);
         setProfile(data);
       } catch (err) {
-        console.log(err);
       }
     };
 
@@ -61,7 +60,6 @@ const ProfilePage = () => {
         }
         setTasks({ results: allTasks, count: allTasks.length });
       } catch (err) {
-        console.log(err);
       }
     };
 

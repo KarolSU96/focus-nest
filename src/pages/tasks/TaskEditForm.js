@@ -35,9 +35,7 @@ function TaskCreateForm() {
         try {
           const response = await axios.get('/task_collections/');
           setCollections(response.data);
-          console.log('Collections response:', response.data);
         } catch (error) {
-          console.error('Error fetching collections:', error);
         }
       };
 
@@ -86,8 +84,6 @@ function TaskCreateForm() {
       await axiosReq.put(`/tasks/${id}`, formData);
       navigate(`/tasks/${id}`);
     } catch (err){
-      console.log(err);
-      console.log(err.response)
       if (err.response?.status !==401) {
         setErrors(err.response?.data);
       }

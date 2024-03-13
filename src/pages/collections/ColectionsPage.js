@@ -32,9 +32,7 @@ function CollecitonsPage({ message = "" }) {
         // Update the collections state and set hasLoaded to true
         setCollections(data);
         setHasLoaded(true);
-        console.log(data);
       } catch (err) {
-        console.log(err);
       }
     };
     setHasLoaded(false);
@@ -60,7 +58,6 @@ function CollecitonsPage({ message = "" }) {
 
   // Function to handle clicking on a collection
   const handleClickCollection = (collectionId) => {
-    console.log("handleClickCollection invoked");
     navigate(`/collections/${collectionId}`);
   };
 

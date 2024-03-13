@@ -30,7 +30,6 @@ function HomeTasksPage({ message = "" }) {
         setTasks(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
       }
     };
     // Set loading status to false and use a (1s) timer to delay the fetch

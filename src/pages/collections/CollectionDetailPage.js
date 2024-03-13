@@ -32,9 +32,7 @@ function CollectionDetailPage({ message = "" }) {
 
         // Set the fetched collection data
         setCollection({ results: [collection] });
-        console.log(collection);
       } catch (err) {
-        console.log(err);
       }
     };
 
@@ -48,7 +46,6 @@ function CollectionDetailPage({ message = "" }) {
         setTasks(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
       }
     };
 

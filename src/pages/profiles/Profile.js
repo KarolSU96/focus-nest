@@ -23,9 +23,7 @@ const Profile = () => {
       try {
         const { data } = await axiosReq.get("/task_collections/");
         setCollections(data);
-        console.log("Collections response:", data);
       } catch (error) {
-        console.error("Error fetching collections:", error);
       }
     };
     // Function to fetch user tasks from the API
@@ -33,9 +31,7 @@ const Profile = () => {
       try {
         const { data } = await axiosReq.get(`/tasks/`);
         setTasks(data);
-        console.log(data);
       } catch (err) {
-        console.log(err);
       }
     };
     // Call the fetchTasks and fetchCollections functions
