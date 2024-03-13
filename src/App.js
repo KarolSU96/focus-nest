@@ -38,7 +38,7 @@ function App() {
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
           <Route path="tasks/:id" element={<TaskDetailPage/>} />
           <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
-          <Route path="completed/" element={<CompletedTasksPage/>}/>
+          <Route path="completed/" element={<CompletedTasksPage message="No matches found. Please refine your search terms."/>}/>
           <Route path="collections/create" element={<CollectionCreateForm/>}/>
           <Route path="collections/:id" element={<CollectionDetailPage message=" No taks found for this collection."/>}/>
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />

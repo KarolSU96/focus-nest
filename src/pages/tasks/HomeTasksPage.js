@@ -9,6 +9,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 
 function HomeTasksPage({ message = "" }) {
+// Get the current user from the context
+const currentUser = useCurrentUser();
   // State for storing tasks and loading status
   const [tasks, setTasks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -24,11 +26,10 @@ function HomeTasksPage({ message = "" }) {
     // Function to fetch tasks from the server based on the search query
     const fetchTasks = async () => {
       try {
-        const { data } = await axiosReq.get(`/tasks/?owner=${currentUser.username}&search=${query}`);
-        console.log(currentUser.username)
+        const { data } = await axiosReq.get(`/tasks/?search=${query}`);
         // Filter incomplete tasks from the results
-        const filteredTasks = data.results.filter(task => !task.is_done && task.owner === currentUser.username);
-        setTasks(filteredTasks);
+        data.results.filter((task) => !task.is_done);
+        setTasks(data);
         setHasLoaded(true);
       } catch (err) {
       }
@@ -45,8 +46,7 @@ function HomeTasksPage({ message = "" }) {
     };
   }, [pathname, query]); // Dependency array with pathname and query as dependencies
 
-  // Get the current user from the context
-  const currentUser = useCurrentUser();
+  
 
   // Content to display when the user is not logged in
   const loggedOutContent = (
@@ -70,7 +70,7 @@ function HomeTasksPage({ message = "" }) {
             {/* Display tasks or a message if no tasks are found */}
             {hasLoaded ? (
               <>
-                {tasks.results?.length ? (
+                {tasks.results.length ? (
                   <InfiniteScroll
                     children={tasks.results
                       .filter((task) => !task.is_done) // Filter tasks where is_done is false
@@ -85,7 +85,7 @@ function HomeTasksPage({ message = "" }) {
                     next={() => fetchMoreData(tasks, setTasks)}
                   />
                 ) : (
-                  <Container className="d-flex justify-content-center">{message}</Container>
+                  <Container className="d-flex justify-content-center">message={message}</Container>
                 )}
               </>
             ) : (
