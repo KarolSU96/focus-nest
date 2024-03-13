@@ -1,7 +1,7 @@
 import styles from "./App.module.css";
 import Navbar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes, useNavigate} from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
@@ -18,10 +18,12 @@ import CollectionEditForm from "./pages/collections/CollectionEditForm";
 import ContactForm from "./pages/contact/ContactForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
 function App() {
 
+  const user = useCurrentUser();
 
   return (
     <div className={styles.App}>
@@ -31,6 +33,8 @@ function App() {
           <Route path="/" element={<HomeTasksPage message="No matches found. Please refine your search terms."/>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
+          { user && (
+          <>
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
           <Route path="tasks/:id" element={<TaskDetailPage/>} />
           <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
@@ -39,6 +43,8 @@ function App() {
           <Route path="collections/:id" element={<CollectionDetailPage message=" No taks found for this collection."/>}/>
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
           <Route path="collections/" element={<CollecitonsPage/>} />
+          </>
+          )}
           <Route path="/contact/" element={<ContactForm/>}/>
           <Route path="/profiles/:id" element={<ProfilePage/>}/>
           <Route path="profiles/:id/edit" element={<ProfileEditForm/>}/>
