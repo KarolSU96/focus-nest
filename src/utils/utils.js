@@ -9,7 +9,7 @@ export const fetchMoreData = async (resource, setResource) => {
       next: data.next,
       // look at the results form API
       results: data.results.reduce((acc, cur) => {
-        // look through the array of posts in accumulator. Compare accumulator item id to current item id from fetched array
+        // look through the array of tasks in accumulator. Compare accumulator item id to current item id from fetched array
         return acc.some((accResult) => accResult.id === cur.id)
           ? acc
           : [...acc, cur];

@@ -33,6 +33,7 @@ function CollecitonsPage({ message = "" }) {
         setCollections(data);
         setHasLoaded(true);
       } catch (err) {
+        console.log(err)
       }
     };
     setHasLoaded(false);
