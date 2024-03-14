@@ -30,7 +30,7 @@ export const DotsDropdown = ({ handleEdit, handleDelete }) => {
           aria-label="edit"
         >
           {/* Edit Icon */}
-          <i class="fas fa-pencil-alt" />
+          <i className="fas fa-pencil-alt" />
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
