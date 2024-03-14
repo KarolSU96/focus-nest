@@ -30,7 +30,7 @@ function App() {
       <Navbar />
       <Container className={styles.Main}>
         <Routes>
-          <Route path="/" element={<HomeTasksPage message="No matches found. Please refine your search terms."/>} />
+          <Route path="/" element={<HomeTasksPage message="No matches found. Please refine your search terms or add tasks."/>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           {user && (
@@ -38,11 +38,11 @@ function App() {
           <Route path="tasks/create" element={<TaskCreateForm/>}/>
           <Route path="tasks/:id" element={<TaskDetailPage/>} />
           <Route path="tasks/:id/edit" element={<TaskEditForm/>}/>
-          <Route path="completed/" element={<CompletedTasksPage message="No matches found. Please refine your search terms."/>}/>
+          <Route path="completed/" element={<CompletedTasksPage message="No matches found. Please refine your search terms or add tasks."/>}/>
           <Route path="collections/create" element={<CollectionCreateForm/>}/>
-          <Route path="collections/:id" element={<CollectionDetailPage message=" No taks found for this collection."/>}/>
+          <Route path="collections/:id" element={<CollectionDetailPage message="No tasks found for this collection."/>}/>
           <Route path="collections/:id/edit" element={<CollectionEditForm/>} />
-          <Route path="collections/" element={<CollecitonsPage/>} />
+          <Route path="collections/" element={<CollecitonsPage message="No matches found. Please refine your search terms or add collections."/> } />
           <Route path="/profiles/:id" element={<ProfilePage/>}/>
           <Route path="profiles/:id/edit" element={<ProfileEditForm/>}/>
           </>

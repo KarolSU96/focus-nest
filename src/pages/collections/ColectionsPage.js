@@ -114,7 +114,7 @@ function CollecitonsPage({ message = "" }) {
                     next={() => fetchMoreData(collections, setCollections)}
                   />
                 ) : (
-                  <Container>message={message}</Container>
+                  <Container>{message}</Container>
                 )}
               </>
             ) : (
