@@ -40,7 +40,7 @@ function CollectionDetailPage({ message = "" }) {
     const fetchTasks = async () => {
       try {
         // Fetch tasks from the server based on the collection ID
-        const { data } = await axiosReq.get(`/tasks/?task_collection/${id}`);
+        const { data } = await axiosReq.get(`/tasks?task_collection/${id}`);
 
         // Set the fetched tasks data
         setTasks(data);
@@ -50,8 +50,8 @@ function CollectionDetailPage({ message = "" }) {
     };
 
     // Execute both functions on component mount
-    fetchTasks();
     handleMount();
+    fetchTasks();
   }, [id]);
 
   return (

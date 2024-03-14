@@ -33,7 +33,6 @@ function CollecitonsPage({ message = "" }) {
         setCollections(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err)
       }
     };
     setHasLoaded(false);
@@ -57,10 +56,7 @@ function CollecitonsPage({ message = "" }) {
     </div>
   );
 
-  // Function to handle clicking on a collection
-  const handleClickCollection = (collectionId) => {
-    navigate(`/collections/${collectionId}`);
-  };
+ 
 
   // Function to handle clicking on the "Add Collection" button
   const handleClickAddCollection = () => {
@@ -100,9 +96,6 @@ function CollecitonsPage({ message = "" }) {
                     children={collections.results.map((collection) => (
                       <div key={collection.id} className="my-2">
                         <Collection
-                          handleClick={() =>
-                            handleClickCollection(collection.id)
-                          }
                           {...collection}
                           setCollections={setCollections}
                           showDots

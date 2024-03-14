@@ -28,8 +28,7 @@ function CompletedTasksPage({ message = "" }) {
         // Set completed tasks and update loading status
         setCompletedTasks(data);
         setHasLoaded(true);
-      } catch (err) {
-      }
+      } catch (err) {}
     };
 
     // Set loading status to false and use a timer (1s) delay the fetch

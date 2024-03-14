@@ -17,7 +17,6 @@ const Collection = (props) => {
     description,
     tasks = [],
     showDots,
-    handleClick,
   } = props;
 
   // Get current user from context
@@ -28,6 +27,11 @@ const Collection = (props) => {
 
   const handleEdit = () => {
     navigate(`/collections/${id}/edit`);
+  };
+
+  //  Function to handle clicking on a collection
+   const handleClick = () => {
+    navigate(`/collections/${id}`);
   };
 
   // Get current location
@@ -47,8 +51,20 @@ const Collection = (props) => {
         window.location.reload();
       }
     } catch (err) {
+      console.log(err)
     }
   };
+  // Initialize collection state with default values
+  // eslint-disable-next-line
+  const [_collection, setCollection] = useState({
+    id,
+    owner,
+    title,
+    created_at,
+    due_date,
+    description,
+    tasks,
+  });
 
   // Update collection state when props change
   useEffect(() => {
@@ -62,25 +78,15 @@ const Collection = (props) => {
       description,
       tasks,
     }));
-  }, [id, owner, title, created_at, due_date, description, tasks]);
+  }, []);
 
-  // Initialize collection state with default values
-  // eslint-disable-next-line
-  const [_collection, setCollection] = useState({
-    id,
-    owner,
-    title,
-    created_at,
-    due_date,
-    description,
-    tasks,
-  });
+  
 
   return (
-    <Card onClick={() => handleClick(id)} className={`${styles.TaskCard}`}>
+    <Card className={`${styles.TaskCard}`}>
       <CardBody>
         <CardTitle className="d-flex justify-content-between">
-          <span>{title}</span>
+          <span onClick={handleClick}>{title}</span>
           <div className="d-flex align-items-center">
             {/* Render DotsDropdown if the user is the owner and showDots is true */}
             {is_owner && showDots && (
