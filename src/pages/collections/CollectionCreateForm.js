@@ -101,12 +101,14 @@ function CollectionCreateForm() {
     try {
       // Submit form data to create a new collection
       const { data } = await axiosReq.post("task_collections/", formData);
-      navigate(`/task_collections/${data.id}`);
+      navigate(`/collections/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
+
+    
   };
 
   return (

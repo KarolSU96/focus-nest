@@ -18,6 +18,8 @@ function CollectionDetailPage({ message = "" }) {
   // State to manage tasks related to the collection
   const [tasks, setTasks] = useState({ results: [] });
 
+  const [collectionTaksIds, setCollectionTaksIds]= useState([]);
+  const [taskIds, setTaskIds] = useState([]);
   // State to track if the data has been loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -29,9 +31,11 @@ function CollectionDetailPage({ message = "" }) {
         const [{ data: collection }] = await Promise.all([
           axiosReq.get(`/task_collections/${id}`),
         ]);
-
+        
         // Set the fetched collection data
         setCollection({ results: [collection] });
+       const collectionTaksIds = collection.tasks
+        setCollectionTaksIds(collectionTaksIds)
       } catch (err) {
       }
     };
@@ -40,12 +44,15 @@ function CollectionDetailPage({ message = "" }) {
     const fetchTasks = async () => {
       try {
         // Fetch tasks from the server based on the collection ID
-        const { data } = await axiosReq.get(`/tasks?task_collection/${id}`);
+        const { data } = await axiosReq.get(`/tasks/`);
 
         // Set the fetched tasks data
         setTasks(data);
+        const taskIds = data.results.map(task => task.id);
+        setTaskIds(taskIds);
         setHasLoaded(true);
       } catch (err) {
+        console.log(err)
       }
     };
 
@@ -70,7 +77,9 @@ function CollectionDetailPage({ message = "" }) {
             <>
               {tasks.results.length ? (
                 <InfiniteScroll
-                  children={tasks.results.map((task) => (
+                  // display only the tasks that are inside the current collection 
+                  children={tasks.results.filter(task => collectionTaksIds.includes(task.id))
+                    .map((task) => (
                     <div key={task.id} className="my-2">
                       {/* Display each task using the Task component */}
                       <Task {...task} setTasks={setTasks} showDots />
