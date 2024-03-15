@@ -18,7 +18,7 @@ function TaskCreateForm() {
       priority: "low",
       due_date: "",
       notes: "",
-      task_collection:"",
+      task_collection: task_collection || "",
     });
 
     const {task_name, priority, due_date, notes, task_collection} = taskData;
