@@ -147,6 +147,7 @@ function TaskCreateForm() {
                 name="due_date"
                 value={due_date}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Displaying due date errors */}

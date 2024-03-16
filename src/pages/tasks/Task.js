@@ -18,6 +18,7 @@ const Task = (props) => {
     due_date,
     notes,
     showDots,
+    task_collection,
   } = props;
 
   // Use useLocation hook to get the current location
@@ -46,7 +47,7 @@ const Task = (props) => {
     }
   };
 
-  // Update task state when props change
+  // Update task state when component mounts
   useEffect(() => {
     setTask((prevTask) => ({
       ...prevTask,
@@ -58,8 +59,11 @@ const Task = (props) => {
       is_done,
       due_date,
       notes,
+      task_collection,
     }));
-  }, [id, owner, created_at, task_name, priority, is_done, due_date, notes]);
+
+  // eslint-disable-next-line 
+  }, []);
 
   // Initialize task state with default values
   const [task, setTask] = useState({
@@ -71,6 +75,7 @@ const Task = (props) => {
     is_done,
     due_date,
     notes,
+    task_collection,
   });
 
   // Handle marking task as done

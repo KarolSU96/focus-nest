@@ -66,7 +66,7 @@ const Collection = (props) => {
     tasks,
   });
 
-  // Update collection state when props change
+  // Update collection state when component mounts
   useEffect(() => {
     setCollection((prevCollection) => ({
       ...prevCollection,
@@ -78,6 +78,7 @@ const Collection = (props) => {
       description,
       tasks,
     }));
+  // eslint-disable-next-line 
   }, []);
 
   
