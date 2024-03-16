@@ -32,8 +32,7 @@ function CollecitonsPage({ message = "" }) {
         // Update the collections state and set hasLoaded to true
         setCollections(data);
         setHasLoaded(true);
-      } catch (err) {
-      }
+      } catch (err) {}
     };
     setHasLoaded(false);
     const timer = setTimeout(() => {
@@ -55,8 +54,6 @@ function CollecitonsPage({ message = "" }) {
       <h1>Please log in or register ot use the page</h1>
     </div>
   );
-
- 
 
   // Function to handle clicking on the "Add Collection" button
   const handleClickAddCollection = () => {

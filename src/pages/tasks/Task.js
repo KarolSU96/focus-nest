@@ -43,8 +43,7 @@ const Task = (props) => {
         // Refresh the window
         window.location.reload();
       }
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   // Update task state when component mounts
@@ -62,7 +61,7 @@ const Task = (props) => {
       task_collection,
     }));
 
-  // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, []);
 
   // Initialize task state with default values
@@ -92,8 +91,7 @@ const Task = (props) => {
         ...prevTask,
         is_done: !prevTask.is_done,
       }));
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   return (

@@ -18,7 +18,7 @@ function CollectionDetailPage({ message = "" }) {
   // State to manage tasks related to the collection
   const [tasks, setTasks] = useState({ results: [] });
 
-  const [collectionTaksIds, setCollectionTaksIds]= useState([]);
+  const [collectionTaksIds, setCollectionTaksIds] = useState([]);
   const [taskIds, setTaskIds] = useState([]);
   // State to track if the data has been loaded
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -31,13 +31,12 @@ function CollectionDetailPage({ message = "" }) {
         const [{ data: collection }] = await Promise.all([
           axiosReq.get(`/task_collections/${id}`),
         ]);
-        
+
         // Set the fetched collection data
         setCollection({ results: [collection] });
-       const collectionTaksIds = collection.tasks
-        setCollectionTaksIds(collectionTaksIds)
-      } catch (err) {
-      }
+        const collectionTaksIds = collection.tasks;
+        setCollectionTaksIds(collectionTaksIds);
+      } catch (err) {}
     };
 
     // Function to fetch tasks related to the collection
@@ -48,11 +47,10 @@ function CollectionDetailPage({ message = "" }) {
 
         // Set the fetched tasks data
         setTasks(data);
-        const taskIds = data.results.map(task => task.id);
+        const taskIds = data.results.map((task) => task.id);
         setTaskIds(taskIds);
         setHasLoaded(true);
-      } catch (err) {
-      }
+      } catch (err) {}
     };
 
     // Execute both functions on component mount
@@ -76,14 +74,15 @@ function CollectionDetailPage({ message = "" }) {
             <>
               {tasks.results.length ? (
                 <InfiniteScroll
-                  // display only the tasks that are inside the current collection 
-                  children={tasks.results.filter(task => collectionTaksIds.includes(task.id))
+                  // display only the tasks that are inside the current collection
+                  children={tasks.results
+                    .filter((task) => collectionTaksIds.includes(task.id))
                     .map((task) => (
-                    <div key={task.id} className="my-2">
-                      {/* Display each task using the Task component */}
-                      <Task {...task} setTasks={setTasks} showDots />
-                    </div>
-                  ))}
+                      <div key={task.id} className="my-2">
+                        {/* Display each task using the Task component */}
+                        <Task {...task} setTasks={setTasks} showDots />
+                      </div>
+                    ))}
                   dataLength={tasks.results.length}
                   loader={<LoadingSpinner />}
                   hasMore={!!tasks.next}
