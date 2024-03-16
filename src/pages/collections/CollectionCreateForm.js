@@ -59,7 +59,6 @@ function CollectionCreateForm() {
       try {
         const { data } = await axiosReq.get("/tasks/");
         setTasksData(data);
-        console.log(data)
       } catch (error) {
         console.error("Error fetching tasks:", error);
       }

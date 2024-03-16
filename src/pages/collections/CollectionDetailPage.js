@@ -52,7 +52,6 @@ function CollectionDetailPage({ message = "" }) {
         setTaskIds(taskIds);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err)
       }
     };
 

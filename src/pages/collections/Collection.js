@@ -51,7 +51,6 @@ const Collection = (props) => {
         window.location.reload();
       }
     } catch (err) {
-      console.log(err)
     }
   };
   // Initialize collection state with default values
