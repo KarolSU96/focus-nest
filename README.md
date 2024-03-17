@@ -55,15 +55,44 @@ Won't have stories described here.
 Document theresuable components and their function.Explain that I reused the css for cards. Can refactor this styles in the future for better naming
 
 ### Navbar
+ Navbar is a navigation componant that displays the icons that when clicked, forward the user to the different pages. It logged in and logged out users see different navbar layout. From navbar user can also add new tasks - which enables him addid tasks from every page of the website. Navbar is used in every page of the website.
 
 
 ### Task 
+ Core component of the app. Users can delete and edit task based on it's id. 
+ The user can add Task's:
+ - Title
+ - Priotiry- the user can chooose between: low, medium, high
+ - Mark as done Checkbox
+ - Due Date
+ - Notes
+
+ The Task component is used inside:
+ * Task Create Form this where the Tasks are crated
+ * Home Tasks Tasks Page, which is where all of the tasks that are not completed are listed inside of the infinite scroll element. 
+ * Task Edit Form page component that encorporated Task which takes the task by the ID and enables it's edit.
 
 
 
 ### Collection
+Collection component enables users to group the tasks together. 
+The users can add Collection's:
+- Title
+- Due date
+- Description
+- Tasks 
+
+The Collection component is used inside:
+* Collection Create Form- where user can create new collection
+* Collections Page- where all of the collections are listed
+* Collection Detail Page- collection details and all of collection's taks are listed inside a infinite loop
+* Collection Edit Page- where users can edit the collection details
+
+
+
 
 ### Profile 
+Users Profile. The user has acces to profile statistics, can set the profile picture and 
 
 
 ### Contact Form
