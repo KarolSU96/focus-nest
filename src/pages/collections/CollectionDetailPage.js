@@ -42,14 +42,29 @@ function CollectionDetailPage({ message = "" }) {
     // Function to fetch tasks related to the collection
     const fetchTasks = async () => {
       try {
-        // Fetch tasks from the server based on the collection ID
-        const { data } = await axiosReq.get(`/tasks/`);
-
+        let allTasks = [];
+        let nextPage = "/tasks/";
+      
+        while (nextPage) {
+          const { data } = await axiosReq.get(nextPage);
+          const { results, next } = data;
+      
+          allTasks = allTasks.concat(results);
+          nextPage = next;
+        }
+      
+        // Extract task IDs from allTasks
+        const taskIds = allTasks.map(task => task.id);
+      
         // Set the fetched tasks data
-        setTasks(data);
-        const taskIds = data.results.map((task) => task.id);
+        setTasks({ results: allTasks });
+      
+        // Set the task IDs state
         setTaskIds(taskIds);
+      
+        // Set hasLoaded to true
         setHasLoaded(true);
+      
       } catch (err) {}
     };
 

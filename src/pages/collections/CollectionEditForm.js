@@ -109,7 +109,7 @@ function CollectionEditForm() {
 
   // Handle cancellation by navigating back to the collections page
   const handleCancel = () => {
-    navigate("/collections/");
+    navigate("/collections");
   };
 
   // Handle form submission

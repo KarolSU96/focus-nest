@@ -31,7 +31,12 @@ const Collection = (props) => {
 
   //  Function to handle clicking on a collection
    const handleClick = () => {
-    navigate(`/collections/${id}`);
+    if (location.pathname === "/collections") {
+      navigate(`/collections/${id}`);
+      // If on the specified page, return early without performing any action
+      return;
+    }
+    
   };
 
   // Get current location
@@ -83,13 +88,13 @@ const Collection = (props) => {
   
 
   return (
-    <Card className={`${styles.TaskCard}`}>
+    <Card onClick={handleClick} className={`${styles.TaskCard}`}>
       <CardBody>
         <CardTitle className="d-flex justify-content-between">
           <span onClick={handleClick}>{title}</span>
           <div className="d-flex align-items-center">
             {/* Render DotsDropdown if the user is the owner and showDots is true */}
-            {is_owner && showDots && (
+            {is_owner && showDots && location.pathname !== "/collections" && (
               <DotsDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
