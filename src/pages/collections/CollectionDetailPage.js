@@ -19,6 +19,8 @@ function CollectionDetailPage({ message = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
 
   const [collectionTaksIds, setCollectionTaksIds] = useState([]);
+
+  // eslint-disable-next-line
   const [taskIds, setTaskIds] = useState([]);
   // State to track if the data has been loaded
   const [hasLoaded, setHasLoaded] = useState(false);
