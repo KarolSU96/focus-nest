@@ -85,7 +85,7 @@ const currentUser = useCurrentUser();
                     next={() => fetchMoreData(tasks, setTasks)}
                   />
                 ) : (
-                  <Container className="d-flex justify-content-center">message={message}</Container>
+                  <Container className="d-flex justify-content-center">{message}</Container>
                 )}
               </>
             ) : (
