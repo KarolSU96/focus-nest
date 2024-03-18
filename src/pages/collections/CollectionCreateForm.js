@@ -50,7 +50,6 @@ function CollectionCreateForm() {
         const { data } = await axiosReq.get("/task_collections/");
         setCollections(data);
       } catch (error) {
-        console.error("Error fetching collections:", error);
       }
     };
 
@@ -60,7 +59,6 @@ function CollectionCreateForm() {
         const { data } = await axiosReq.get("/tasks/");
         setTasksData(data);
       } catch (error) {
-        console.error("Error fetching tasks:", error);
       }
     };
 

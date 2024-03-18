@@ -78,7 +78,6 @@ function TaskCreateForm() {
           task_collection,
         });
       } catch (error) {
-        console.error(error);
       }
     };
 

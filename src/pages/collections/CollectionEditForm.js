@@ -65,7 +65,6 @@ function CollectionEditForm() {
           tasks,
         });
       } catch (error) {
-        console.error("Error fetching collections:", error);
       }
     };
 
@@ -85,7 +84,6 @@ function CollectionEditForm() {
         }
         setTasksData({ results: allTasks });
       } catch (error) {
-        console.error("Error fetching tasks:", error);
       }
     };
 
