@@ -180,6 +180,7 @@ function TaskCreateForm() {
                 type="date"
                 name="due_date"
                 value={due_date}
+                required
                 onChange={handleChange}
               />
             </Form.Group>

@@ -114,7 +114,7 @@ Here the user can change the profile image and add his/hers goals.
 
 Contact form displays for every user, whether someone is logged in or not. The users can contact the admin / crew of the site for support/ improvement ideas/ report any bugs.
 
-###
+
 
 ## Bugs and Errors
 
