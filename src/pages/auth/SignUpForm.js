@@ -60,7 +60,7 @@ const SignUpForm = () => {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="username"
+                placeholder="Username"
                 name="username"
                 value={username}
                 onChange={handleChange}

@@ -142,6 +142,9 @@ Explain the problems that I encountered and that I still encounter.
 
 ## Testing
 
+### ESLint
+Every file of the project has been checked with the ESLint and no issues have been found.
+
 ### Lighthouse
 
 |                    | Desktop     | Desktop       | Desktop        | Desktop | Mobile      | Mobile        | Mobile         | Mobile |
