@@ -18,6 +18,38 @@ The focus was on creating a calming, easy-to- use and intuitive user interface. 
 When desinging the app, the goal was to create a calming, easy-to-use interface.The color palette is subtle and is consistent throughout the app, promoting a sense of tranquility.
 For styling the React Bootstrap was used, with additional custom styles added to align with the overall vision of the website.
 
+### Wireframes
+
+
+* Sign in page
+![Sign in](./documentation/SignInMockup.png)
+
+* Sign up page
+![Sign up](./documentation/SignUpMockup.png)
+
+* Home page + Collection Page have almost the same layout. With the difference that the dropdown menu for the collection appears only on the Collection Detail Page.
+![Home page](./documentation/HomeTaskPageMockup.png)
+
+* Completed tasks page
+![Completed tasks](./documentation/CompletedMockup.png)
+
+* Task edit form
+![Task edit](./documentation/TaskEditFormMockup.png)
+
+
+* Collection details page
+![Collection details](./documentation/CollectionDetailMockup.png)
+
+* Collection edit form
+![Collection edit](./documentation/CollectionEditMockup.png)
+
+
+
+
+
+
+
+
 ### Color palette
 
 ![coolors](./documentation/FocusNestCoolors.png)
