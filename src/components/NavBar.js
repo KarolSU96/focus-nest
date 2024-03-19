@@ -26,7 +26,7 @@ const NavBar = () => {
 
   const handleSignOut = async () => {
     try {
-      const response = await axios.post("dj-rest-auth/logout/");
+      await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       navigate("/");
       removeTokenTimestamp();
