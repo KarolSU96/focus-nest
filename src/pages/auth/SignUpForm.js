@@ -64,6 +64,7 @@ const SignUpForm = () => {
                 name="username"
                 value={username}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display username-related errors */}
@@ -81,6 +82,7 @@ const SignUpForm = () => {
                 name="password1"
                 value={password1}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display password-related errors */}
@@ -99,6 +101,7 @@ const SignUpForm = () => {
                 name="password2"
                 value={password2}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display confirm password-related errors */}

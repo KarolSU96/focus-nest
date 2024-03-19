@@ -11,11 +11,11 @@ Focus Nest aims to enhance user productivity by providing a comprehensive tool f
 
 ## UX
 
-The focus was on creating a calming, easy-to- use and intuitive user interface. Navigation is made intuitive, with the navbar accessible at all times aswell as animated buttons, dropdowns and hyperlinks. On smaller screens, it collapses to avoid interference with other UI elements.
+The focus was on creating a calming, easy-to- use and intuitive user interface. Navigation is made intuitive, with the navbar accessible at all times as well as animated buttons, dropdowns and hyperlinks. On smaller screens, it collapses to avoid interference with other UI elements.
 
 ### Design
 
-When desinging the app, the goal was to create a calming, easy-to-use internace.The color palette is sublte and is consistent through-out the app, promoting a sense of tranquility.
+When desinging the app, the goal was to create a calming, easy-to-use interface.The color palette is subtle and is consistent throughout the app, promoting a sense of tranquility.
 For styling the React Bootstrap was used, with additional custom styles added to align with the overall vision of the website.
 
 ### Color palette
@@ -24,7 +24,7 @@ For styling the React Bootstrap was used, with additional custom styles added to
 
 ### Typography
 
-Nunito is this project's font. It's a sans-serif typeface designes by Vernon Adams. It's rounded letterforms give it a warm and friendly feeling, which nicely harmonizes with the calm color palette of the app.
+Nunito is this project's font. It's a sans-serif typeface designed by Vernon Adams. It's rounded letterforms give it a warm and friendly feeling, which nicely harmonizes with the calm color palette of the app.
 
 ### User Sories
 
@@ -36,37 +36,36 @@ Focus Nest offers a user-friendly task management experience. Users can manage t
 
 ## Future Features
 
-Won't have stories described here.
+In the future I would like to add the filters to the tasks and collections. The user would be able to search them by the date.
+I would also like to improve the tasks by allowing them to store images / files. 
 
 ## Components
 
-Document theresuable components and their function.Explain that I reused the css for cards. Can refactor this styles in the future for better naming
-
 ### Navbar
 
-Navbar is a navigation componant that displays the icons that when clicked, forward the user to the different pages. It logged in and logged out users see different navbar layout. From navbar user can also add new tasks - which enables him addid tasks from every page of the website. Navbar is used in every page of the website.
+Navbar is a navigation componant that displays the icons that when clicked, forward the user to the different pages. It logged in and logged out users see different navbar layout. From navbar user can also add new tasks - which enables him to add tasks from every page of the website. Navbar is used in every page of the website.
 
 ### Avatar
 
 Avatar is user profile image component that is displayed inside the Navbar component.
 
-### DotsDropdown
+### Dots Dropdown
 
 Three dots dropdown compoenent. In this project it provides the edit and delete dropdown buttons.
 
-### LoadingSpinner
+### Loading Spinner
 
-Loading spinner displays before the data is fetched on the pages, aswell as during the use of the searchbar.
+Loading spinner displays before the data is fetched on the pages, as well as during the use of the searchbar.
 
-### PageNotFound
+### Page Not Found
 
 Informs user that he laded on a unknown url.
 
-### SignUpForm
+### Sig nU pForm
 
 Users can register there and are welcomed with a encouraging image.
 
-### SignInForm
+### Sign In Form
 
 Page where users can log in with their credentials.
 
@@ -76,7 +75,7 @@ Core component of the app. Users can delete and edit task based on it's id.
 The user can add Task's:
 
 - Title
-- Priotiry- the user can chooose between: low, medium, high
+- Priotiry- the user can choose between: low, medium, high
 - Mark as done Checkbox
 - Due Date
 - Notes
@@ -85,7 +84,7 @@ The Task component is used inside:
 
 - Task Create Form this where the Tasks are crated
 - Home / Tasks Page, which is where all of the tasks that are not completed are listed inside of the infinite scroll element.
-- Task Edit Form page component that encorporated Task which takes the task by the ID and enables it's edit.
+- Task Edit Form page component that incorporated Task which takes the task by the ID and enables its edit.
 - Task Detail Page - this page is used to display the single tasks. It is not accessible through the ui, because the user sees every detail of the task inside of the HomeTasksPage, can be accessed by the url modification. Useful for admins whenever he would like to check how the actual task look like outside of the admin panel.
 
 ### Collection
@@ -113,6 +112,10 @@ Here the user can change the profile image and add his/hers goals.
 ### Contact Form
 
 Contact form displays for every user, whether someone is logged in or not. The users can contact the admin / crew of the site for support/ improvement ideas/ report any bugs.
+
+### Current User Context 
+
+Manages authentication state and provides current user data to components.
 
 
 
@@ -176,9 +179,9 @@ Explain the problems that I encountered and that I still encounter.
 
 ## Acknowledgments
 I would like to thank:
-- My mentor, [Lauren-Nicole](https://github.com/CluelessBiker) for her support and enrouragement throughout the development of this project.
-- Code Insitute tutor team for their help and assistance with debugging some of the project bugs.
-- Conde Institute for the UseClickOutSideToggle function and CurrentUserContext.
+- My mentor, [Lauren-Nicole](https://github.com/CluelessBiker) for her support and encouragement throughout the development of this project.
+- Code Institute tutor team for their help and assistance with debugging some of the project bugs.
+- Code Institute for the UseClickOutsideToggle function and CurrentUserContext.
 - [Am I Responsive](https://ui.dev/amiresponsive) for providing a useful, easy to use, website responsiveness visualisation tool.
 - [PGBS](https://www.proglobalbusinesssolutions.com/css-hover-effects/) and [Dev.to](https://dev.to/kiranrajvjd/12-simple-css-hover-effects-95d) for inspiration for the CSS hover effects.
 - [SevemStorm](https://www.pexels.com/@sevenstormphotography/) from Pexels for the sign in image 
