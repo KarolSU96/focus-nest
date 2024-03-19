@@ -71,6 +71,7 @@ const ContactForm = () => {
                 name="name"
                 value={name}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display name-related errors */}
@@ -88,6 +89,7 @@ const ContactForm = () => {
                 name="subject"
                 value={subject}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display subject-related errors */}
@@ -106,6 +108,7 @@ const ContactForm = () => {
                 name="email"
                 value={email}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display email-related errors */}
@@ -123,6 +126,7 @@ const ContactForm = () => {
                 name="message"
                 value={message}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
             {/* Display message-related errors */}
