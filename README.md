@@ -43,11 +43,11 @@ For styling the React Bootstrap was used, with additional custom styles added to
 * Collection edit form
 ![Collection edit](./documentation/CollectionEditMockup.png)
 
+* Contact form 
+![Contact form](./documentation/ContactFormMockup.png)
 
-
-
-
-
+* Profile page 
+![Profile page](./documentation/ProfilePageMockup.png)
 
 
 ### Color palette
