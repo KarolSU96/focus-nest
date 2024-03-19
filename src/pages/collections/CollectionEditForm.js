@@ -141,7 +141,7 @@ function CollectionEditForm() {
       className={`${styles.TaskForm} p-4 mt-5 w-75 mx-auto`}
     >
       <Container className="text-center">
-        <h2>Add a Collection</h2>
+        <h2>Edit Collection</h2>
         {/* Display the current user's username */}
         {currentUser ? userTest : ""}
         <Row className="justify-content-center">
