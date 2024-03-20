@@ -68,7 +68,7 @@ Nunito is this project's font. It's a sans-serif typeface designed by Vernon Ada
 
 ### User Stories
 
-For detailed user stories, please visit the [Kanbar Board](https://github.com/users/KarolSU96/projects/3) of the project.
+For detailed user stories, please visit the [Kanban Board](https://github.com/users/KarolSU96/projects/3) of the project.
 
 ## Features
 
@@ -154,6 +154,7 @@ The JSX of the component is saved in a variable for easier modification if in th
 
 Contact form displays for every user, whether someone is logged in or not. The users can contact the admin/crew of the site for support/ improvement ideas/ report any bugs.
 
+
 ### Current User Context 
 
 Manages authentication state and provides current user data to components.
@@ -162,7 +163,9 @@ Manages authentication state and provides current user data to components.
 
 ## Bugs and Errors
 
-Explain the problems that I encountered and that I still encounter.
+There is this WebSocket bug that I unfortunately can not fix. It doesn't affect the functionality of the website. Because of that, I decided to leave it as it is in the project and fix it in the future. 
+
+![WSS](./documentation/WSSError.png)
 
 ## Technologies used
 
@@ -241,6 +244,22 @@ Every file of the project has been checked with the ESLint and no issues have be
 | \*\*Contact Form\*\*                 |                                                                                               |                                                                                                                                                        |                                                                                   |
 | Contact form working                 | Contact form appears in the admin panel.                                                          | \-Fill out contact form fields.<br>\-Check the admin panel.                                                                                            | Contact form appears on the admin page.                                           |
 
+## Deployment
+
+### 1. Get the Code
+- Fork or clone this repository from GitHub. 
+
+### 2. Set up the project workspace
+- Run `npm install` in the terminal
+- Go to src/api/axiosDefaults and paste the deployed backend as a value for baseURL `axios.defaults.baseURL = "Your deployed backend link here"`;
+### 3. Heroku App Setup
+- Log in to your Heroku account. 
+- Click 'Create new app' from 'New' menu at the top right. 
+- Enter name for your app and choose the region.
+- Click 'create app'
+- Click `Deploy` and then choose `GitHub` as Deployment method.
+- Select the cloned repository and click `Connect`
+- Click on Deploy Branch to deploy the website.
 
 ## Acknowledgments
 I would like to thank:
