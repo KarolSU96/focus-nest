@@ -33,12 +33,17 @@ For styling the React Bootstrap was used, with additional custom styles added to
 * Completed tasks page
 ![Completed tasks](./documentation/CompletedMockup.png)
 
+* Add task form
+![Add task](./documentation/AddTaskMockup.png)
+
 * Task edit form
 ![Task edit](./documentation/TaskEditFormMockup.png)
 
-
 * Collection details page
 ![Collection details](./documentation/CollectionDetailMockup.png)
+
+* Add collection form
+![Add collection](./documentation/AddCollectionMockup.png)
 
 * Collection edit form
 ![Collection edit](./documentation/CollectionEditMockup.png)
@@ -48,6 +53,9 @@ For styling the React Bootstrap was used, with additional custom styles added to
 
 * Profile page 
 ![Profile page](./documentation/ProfilePageMockup.png)
+
+* Profile edit 
+![Profile edit](./documentation/ProfileEditMockup.png)
 
 
 ### Color palette
@@ -241,3 +249,4 @@ I would like to thank:
 - [Am I Responsive](https://ui.dev/amiresponsive) for providing a useful, easy to use, website responsiveness visualisation tool.
 - [PGBS](https://www.proglobalbusinesssolutions.com/css-hover-effects/) and [Dev.to](https://dev.to/kiranrajvjd/12-simple-css-hover-effects-95d) for inspiration for the CSS hover effects.
 - [SevemStorm](https://www.pexels.com/@sevenstormphotography/) from Pexels for the sign in image 
+- [Balsamiq](https://balsamiq.cloud/) used for wireframes
