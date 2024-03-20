@@ -104,7 +104,7 @@ function SignInForm() {
         </Container>
         {/* Container for the link to the sign-up page */}
         <Container className="mt-4 text-center">
-          <Link to="/signin">
+          <Link to="/signup">
             Don't have an account?{" "}
             <span className={styles.SignUpSpan} data-val="Sign up">
               Sign up
