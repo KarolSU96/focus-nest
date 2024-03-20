@@ -245,6 +245,7 @@ Every file of the project has been checked with the ESLint and no issues have be
 | Contact form working                 | Contact form appears in the admin panel.                                                          | \-Fill out contact form fields.<br>\-Check the admin panel.                                                                                            | Contact form appears on the admin page.                                           |
 
 ## Deployment
+Make sure that you have the Backend already deployed and running.
 
 ### 1. Get the Code
 - Fork or clone this repository from GitHub. 
@@ -252,14 +253,15 @@ Every file of the project has been checked with the ESLint and no issues have be
 ### 2. Set up the project workspace
 - Run `npm install` in the terminal
 - Go to src/api/axiosDefaults and paste the deployed backend as a value for baseURL `axios.defaults.baseURL = "Your deployed backend link here"`;
+
 ### 3. Heroku App Setup
 - Log in to your Heroku account. 
-- Click 'Create new app' from 'New' menu at the top right. 
+- Click `Create new app` from `New` menu at the top right. 
 - Enter name for your app and choose the region.
-- Click 'create app'
+- Click `Create app`
 - Click `Deploy` and then choose `GitHub` as Deployment method.
 - Select the cloned repository and click `Connect`
-- Click on Deploy Branch to deploy the website.
+- Click on `Deploy Branch` to deploy the website.
 
 ## Acknowledgments
 I would like to thank:
